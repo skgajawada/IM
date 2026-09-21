@@ -1,0 +1,5112 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+
+% ============================================================
+% UNIT-IV: WORK STUDY AND STATISTICAL QUALITY CONTROL
+% FULL DETAILED METROPOLIS BEAMER PRESENTATION
+% PDFLaTeX / OVERLEAF FREE COMPATIBLE
+% ============================================================
+
+\usetheme[
+    progressbar=frametitle,
+    numbering=fraction
+]{metropolis}
+
+% ------------------------------------------------------------
+% PDFLaTeX-SAFE FONT CONFIGURATION
+% ------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% ------------------------------------------------------------
+% MATHEMATICS
+% ------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% ------------------------------------------------------------
+% TABLES
+% ------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+
+% ------------------------------------------------------------
+% GRAPHICS / FORMATTING
+% ------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+% ------------------------------------------------------------
+% COLORS
+% ------------------------------------------------------------
+\definecolor{HeaderDark}{RGB}{35,39,42}
+\definecolor{Accent}{RGB}{0,150,136}
+\definecolor{TextDark}{RGB}{45,45,45}
+\definecolor{Muted}{RGB}{100,105,110}
+\definecolor{LightAccent}{RGB}{232,245,243}
+\definecolor{DarkBlue}{RGB}{35,70,105}
+\definecolor{DarkGreen}{RGB}{30,105,75}
+\definecolor{DarkRed}{RGB}{145,45,50}
+
+\setbeamercolor{normal text}{fg=TextDark}
+\setbeamercolor{frametitle}{fg=HeaderDark}
+\setbeamercolor{progress bar}{fg=Accent}
+\setbeamercolor{alerted text}{fg=Accent}
+\setbeamercolor{example text}{fg=DarkGreen}
+
+% ------------------------------------------------------------
+% FONT SIZES
+% ------------------------------------------------------------
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{framesubtitle}{size=\normalsize}
+\setbeamerfont{title}{size=\LARGE}
+\setbeamerfont{subtitle}{size=\large}
+
+% ------------------------------------------------------------
+% LIST SPACING
+% ------------------------------------------------------------
+\setlist[itemize]{
+    topsep=2pt,
+    itemsep=2pt,
+    parsep=0pt,
+    partopsep=0pt
+}
+
+\setlist[enumerate]{
+    topsep=2pt,
+    itemsep=2pt,
+    parsep=0pt,
+    partopsep=0pt
+}
+
+% ------------------------------------------------------------
+% MATHEMATICAL SHORTCUTS
+% ------------------------------------------------------------
+\newcommand{\OT}{T_o}
+\newcommand{\RT}{R}
+\newcommand{\NT}{T_N}
+\newcommand{\ST}{T_S}
+\newcommand{\Allow}{A}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\Rbar}{\bar{R}}
+\newcommand{\phat}{\hat{p}}
+\newcommand{\qhat}{\hat{q}}
+\newcommand{\Pa}{P_a}
+\newcommand{\LTPD}{\mathrm{LTPD}}
+\newcommand{\AQL}{\mathrm{AQL}}
+
+% ------------------------------------------------------------
+% TABLE COLUMN TYPES
+% ------------------------------------------------------------
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% ------------------------------------------------------------
+% TITLE INFORMATION
+% ------------------------------------------------------------
+\title{UNIT--IV: WORK STUDY AND\\
+STATISTICAL QUALITY CONTROL}
+
+\subtitle{
+Detailed Theory, Mathematical Modelling,\\
+Numerical Examples, Interpretation and Applications
+}
+
+\author{Gajavada Sanjeevkumar}
+
+\institute{
+Department of Mechanical Engineering\\
+Indian Institute of Technology (Indian School of Mines), Dhanbad
+}
+
+\date{}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+
+\begin{document}
+
+% ============================================================
+% TITLE
+% ============================================================
+
+\maketitle
+
+% ============================================================
+% CONTENTS
+% ============================================================
+
+\begin{frame}{Unit--IV Roadmap}
+\small
+\begin{enumerate}
+    \item Work Study
+    \item Method Study
+    \item Method Study Charts
+    \item Work Measurement
+    \item Stopwatch Time Study
+    \item Performance Rating and Normal Time
+    \item Allowances and Standard Time
+    \item Work Sampling
+    \item Statistical Quality Control
+    \item Control Charts
+    \item Variables and Attributes Charts
+    \item $\bar X$--$R$ Charts
+    \item $p$ and $c$ Charts
+    \item Acceptance Sampling
+    \item Operating Characteristic Curves
+    \item AQL, LTPD and Sampling Risks
+    \item Integrated Manufacturing Example
+    \item Formula Sheet
+    \item Viva Questions
+\end{enumerate}
+\end{frame}
+
+% ============================================================
+% SECTION I
+% ============================================================
+
+\section{Work Study}
+
+\begin{frame}{What is Work Study?}
+\small
+
+\textbf{Work study} is a systematic examination of the methods of doing work
+and the time required to perform the work.
+
+\vspace{4pt}
+
+It consists primarily of:
+
+\begin{itemize}
+    \item \textbf{Method study} -- determines the best practical way of doing a job.
+    \item \textbf{Work measurement} -- determines the time required for a qualified worker
+    to perform the job at a defined level of performance.
+\end{itemize}
+
+\vspace{4pt}
+
+Therefore,
+
+\[
+\boxed{
+\text{Work Study}
+=
+\text{Method Study}
++
+\text{Work Measurement}
+}
+\]
+
+\textbf{Central objective:}
+
+\[
+\boxed{
+\text{Improve productivity by eliminating unnecessary work and establishing standards}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Why is Work Study Required?}
+\small
+
+Work study is required because manufacturing systems contain:
+
+\begin{itemize}
+    \item unnecessary motions,
+    \item unnecessary transportation,
+    \item waiting and delays,
+    \item poor workplace layout,
+    \item unbalanced operations,
+    \item inefficient material handling,
+    \item inappropriate working methods,
+    \item excessive fatigue,
+    \item uncontrolled variability in task times.
+\end{itemize}
+
+\vspace{4pt}
+
+The fundamental engineering question is:
+
+\begin{center}
+\Large
+\textbf{Can the same useful output be obtained with less unnecessary effort, time and cost?}
+\end{center}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Objectives of Work Study}
+\small
+
+\begin{columns}[T]
+
+\column{0.48\textwidth}
+
+\textbf{Technical objectives}
+
+\begin{itemize}
+    \item Improve methods.
+    \item Eliminate unnecessary operations.
+    \item Reduce material movement.
+    \item Improve workplace layout.
+    \item Reduce cycle time.
+    \item Establish standard methods.
+\end{itemize}
+
+\column{0.48\textwidth}
+
+\textbf{Managerial objectives}
+
+\begin{itemize}
+    \item Production planning.
+    \item Labour planning.
+    \item Capacity planning.
+    \item Cost estimation.
+    \item Incentive schemes.
+    \item Productivity improvement.
+\end{itemize}
+
+\end{columns}
+
+\vspace{6pt}
+
+\[
+\boxed{
+\text{Better method}
+\rightarrow
+\text{Less time}
+\rightarrow
+\text{Higher productivity}
+\rightarrow
+\text{Lower unit cost}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Work Study: Basic Procedure}
+\small
+
+A systematic work-study investigation generally follows:
+
+\begin{enumerate}
+    \item Select the job.
+    \item Record the existing method.
+    \item Examine the recorded facts.
+    \item Develop an improved method.
+    \item Install the improved method.
+    \item Measure the work.
+    \item Determine the standard time.
+    \item Maintain the improved standard.
+\end{enumerate}
+
+\vspace{5pt}
+
+\textbf{Important principle:}
+
+The analyst should not immediately measure the old method if the method
+itself can first be improved.
+
+\[
+\boxed{
+\text{Improve the method first, then establish the time standard}
+}
+\]
+
+\end{frame}
+
+% ============================================================
+% METHOD STUDY
+% ============================================================
+
+\section{Method Study}
+
+\begin{frame}{Method Study}
+\small
+
+\textbf{Method study} is the systematic recording and critical examination
+of existing and proposed ways of doing work.
+
+\vspace{5pt}
+
+It attempts to answer:
+
+\begin{itemize}
+    \item What operation is being performed?
+    \item Why is it necessary?
+    \item Where is it performed?
+    \item Why is it performed there?
+    \item When is it performed?
+    \item Who performs it?
+    \item Why is that person doing it?
+    \item How is it performed?
+\end{itemize}
+
+\vspace{5pt}
+
+The aim is not simply to make a worker work faster.
+
+\[
+\boxed{
+\text{Aim = eliminate unnecessary work and improve the system}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Method Study Procedure}
+\small
+
+A commonly used sequence is:
+
+\begin{enumerate}
+    \item \textbf{Select} the work to be studied.
+    \item \textbf{Record} all relevant facts.
+    \item \textbf{Examine} the facts critically.
+    \item \textbf{Develop} an improved method.
+    \item \textbf{Evaluate} the proposed method.
+    \item \textbf{Define} the new method.
+    \item \textbf{Install} the method.
+    \item \textbf{Maintain} the method.
+\end{enumerate}
+
+\vspace{5pt}
+
+The examination stage is especially important because observations
+without critical questioning do not automatically produce improvement.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{SREDIM Technique}
+\small
+
+\textbf{SREDIM} is a traditional mnemonic for method-study procedure:
+
+\[
+\boxed{
+S-R-E-D-I-M
+}
+\]
+
+\begin{description}
+    \item[S] Select
+    \item[R] Record
+    \item[E] Examine
+    \item[D] Develop
+    \item[I] Install
+    \item[M] Maintain
+\end{description}
+
+\vspace{4pt}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+    \item \textbf{Select}: identify the job.
+    \item \textbf{Record}: document the existing method.
+    \item \textbf{Examine}: question each activity.
+    \item \textbf{Develop}: formulate alternatives.
+    \item \textbf{Install}: introduce the selected method.
+    \item \textbf{Maintain}: ensure continued adherence and improvement.
+\end{itemize}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Critical Examination Questions}
+\small
+
+For each activity, ask:
+
+\begin{center}
+\Large
+\textbf{WHY?}
+\end{center}
+
+Then investigate:
+
+\begin{tabularx}{\textwidth}{YY}
+\toprule
+Question & Engineering purpose \\
+\midrule
+What? & Identify the exact activity.\\
+Why? & Test whether it is necessary.\\
+Where? & Check location and layout.\\
+When? & Check sequence and timing.\\
+Who? & Check responsibility and skill.\\
+How? & Check the physical method.\\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+The goal is to distinguish \textbf{necessary work} from
+\textbf{avoidable work}.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{ECRS Principle}
+\small
+
+ECRS provides four basic directions for method improvement.
+
+\[
+\boxed{
+E-C-R-S
+}
+\]
+
+\begin{description}
+    \item[E -- Eliminate] Remove unnecessary activities.
+    \item[C -- Combine] Combine activities where practical.
+    \item[R -- Rearrange] Change sequence or arrangement.
+    \item[S -- Simplify] Make the remaining work easier.
+\end{description}
+
+\vspace{5pt}
+
+\textbf{Example:}
+
+Suppose a worker:
+
+\[
+\text{Walk} \rightarrow \text{Pick} \rightarrow
+\text{Walk} \rightarrow \text{Place}
+\]
+
+A better layout may permit:
+
+\[
+\text{Pick} \rightarrow \text{Place}
+\]
+
+with reduced travel.
+
+\end{frame}
+
+% ============================================================
+% METHOD STUDY CHARTS
+% ============================================================
+
+\section{Method Study Charts}
+
+\begin{frame}{Purpose of Method Study Charts}
+\small
+
+Charts convert a physical work process into a structured representation.
+
+They help identify:
+
+\begin{itemize}
+    \item operations,
+    \item inspections,
+    \item transport,
+    \item delays,
+    \item storage,
+    \item unnecessary movement,
+    \item repeated activities,
+    \item excessive travel,
+    \item poor sequence.
+\end{itemize}
+
+\vspace{5pt}
+
+Different charts provide different levels of detail.
+
+\[
+\boxed{
+\text{Overall process}
+\rightarrow
+\text{Detailed process}
+\rightarrow
+\text{Operator-machine interaction}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Operation Process Chart}
+\small
+
+An \textbf{Operation Process Chart (OPC)} records the principal
+operations and inspections involved in producing a product.
+
+\vspace{5pt}
+
+Typical symbols:
+
+\begin{itemize}
+    \item Operation: circle
+    \item Inspection: square
+\end{itemize}
+
+It is useful for:
+
+\begin{itemize}
+    \item understanding overall manufacturing sequence,
+    \item identifying major operations,
+    \item identifying inspection stages,
+    \item comparing alternative processes.
+\end{itemize}
+
+\vspace{5pt}
+
+\textbf{Limitation:}
+
+It does not provide the same detailed information about transportation,
+delays and storage as a flow process chart.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Flow Process Chart}
+\small
+
+A \textbf{Flow Process Chart} gives a more detailed representation.
+
+It normally identifies:
+
+\begin{itemize}
+    \item Operation
+    \item Inspection
+    \item Transport
+    \item Delay
+    \item Storage
+\end{itemize}
+
+\vspace{4pt}
+
+A typical analysis asks:
+
+\[
+\text{How many operations?}
+\]
+
+\[
+\text{How much distance is travelled?}
+\]
+
+\[
+\text{How much waiting occurs?}
+\]
+
+\[
+\text{How many storage points exist?}
+\]
+
+\vspace{4pt}
+
+It is particularly useful for material handling and layout improvement.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Two-Handed Process Chart}
+\small
+
+The two-handed process chart records the activities of:
+
+\[
+\boxed{\text{Left hand and right hand}}
+\]
+
+during a short repetitive task.
+
+\vspace{5pt}
+
+It is useful for:
+
+\begin{itemize}
+    \item repetitive assembly,
+    \item manual operations,
+    \item identifying idle hand time,
+    \item balancing hand motions,
+    \item improving workplace arrangement.
+\end{itemize}
+
+\vspace{5pt}
+
+\textbf{Ideal principle:}
+
+Both hands should have purposeful activity where practical,
+while avoiding unnecessary motion.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Man--Machine Chart}
+\small
+
+A \textbf{Man--Machine Chart} represents the utilization of a worker
+and one or more machines over a common time scale.
+
+\vspace{5pt}
+
+It identifies:
+
+\begin{itemize}
+    \item worker working time,
+    \item worker idle time,
+    \item machine running time,
+    \item machine idle time,
+    \item simultaneous utilization.
+\end{itemize}
+
+\vspace{5pt}
+
+A major objective is to reduce idle resources.
+
+For example:
+
+\[
+\boxed{
+\text{Worker idle while machine runs}
+}
+\]
+
+may provide an opportunity for another task.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Comparison of Method Study Charts}
+\small
+
+\begin{tabularx}{\textwidth}{YYYY}
+\toprule
+Chart & Main purpose & Detail & Typical use \\
+\midrule
+OPC & Major operations & Low--medium & Overall process\\
+Flow Process Chart & Detailed flow & High & Material/process analysis\\
+Two-Handed Chart & Hand motions & Very high & Manual repetitive work\\
+Man--Machine Chart & Resource utilization & High & Worker-machine analysis\\
+\bottomrule
+\end{tabularx}
+
+\vspace{8pt}
+
+\textbf{Selection rule:}
+
+Choose the chart according to the question being investigated.
+
+\end{frame}
+
+% ============================================================
+% WORK MEASUREMENT
+% ============================================================
+
+\section{Work Measurement}
+
+\begin{frame}{What is Work Measurement?}
+\small
+
+\textbf{Work measurement} is the application of techniques designed
+to establish the time required by a qualified worker to complete
+a specified task at a defined level of performance.
+
+\vspace{5pt}
+
+The result is generally a:
+
+\[
+\boxed{\text{Standard Time}}
+\]
+
+Standard time is useful for:
+
+\begin{itemize}
+    \item production planning,
+    \item scheduling,
+    \item manpower estimation,
+    \item costing,
+    \item capacity planning,
+    \item incentive systems,
+    \item productivity measurement.
+\end{itemize}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Major Work Measurement Techniques}
+\small
+
+Important techniques include:
+
+\begin{enumerate}
+    \item Stopwatch time study
+    \item Work sampling
+    \item Predetermined motion-time systems
+    \item Standard data systems
+    \item Analytical estimating
+\end{enumerate}
+
+\vspace{6pt}
+
+For repetitive manufacturing work, stopwatch time study is widely used.
+
+For work involving a large number of random activities,
+work sampling can be more practical.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Time Study: Basic Concept}
+\small
+
+Time study determines how long a task should take under specified
+conditions.
+
+The analyst:
+
+\begin{enumerate}
+    \item Selects the task.
+    \item Divides it into elements.
+    \item Observes several cycles.
+    \item Records element times.
+    \item Determines representative observed time.
+    \item Applies performance rating.
+    \item Adds appropriate allowances.
+\end{enumerate}
+
+The final objective is:
+
+\[
+\boxed{
+\text{Observed Time}
+\rightarrow
+\text{Normal Time}
+\rightarrow
+\text{Standard Time}
+}
+\]
+
+\end{frame}
+
+% ============================================================
+% STOPWATCH TIME STUDY
+% ============================================================
+
+\section{Stopwatch Time Study}
+
+\begin{frame}{Stopwatch Time Study}
+\small
+
+Stopwatch time study is a direct work-measurement technique.
+
+The analyst observes a worker performing a defined task and measures
+the time associated with individual elements or complete cycles.
+
+\vspace{5pt}
+
+\textbf{Suitable when:}
+
+\begin{itemize}
+    \item the work is repetitive,
+    \item cycle boundaries are identifiable,
+    \item the method is relatively stable,
+    \item sufficient observations can be obtained.
+\end{itemize}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Why Divide a Job into Elements?}
+\small
+
+A complete job may contain several distinct activities.
+
+Example:
+
+\[
+\text{Pick component}
+\rightarrow
+\text{Position}
+\rightarrow
+\text{Fasten}
+\rightarrow
+\text{Inspect}
+\]
+
+Dividing the job provides:
+
+\begin{itemize}
+    \item better observation accuracy,
+    \item identification of abnormal elements,
+    \item element-wise rating,
+    \item identification of bottlenecks,
+    \item better method improvement.
+\end{itemize}
+
+\vspace{5pt}
+
+\[
+\boxed{
+T_{\text{cycle}}
+=
+\sum_{i=1}^{m} T_i
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Continuous Timing}
+\small
+
+In \textbf{continuous timing}, the stopwatch runs continuously.
+
+The observer records the stopwatch reading at the end of each element.
+
+If cumulative readings are:
+
+\[
+C_1,\ C_2,\ C_3,\ldots,C_n
+\]
+
+then the element times are:
+
+\[
+T_1=C_1
+\]
+
+\[
+T_2=C_2-C_1
+\]
+
+\[
+T_3=C_3-C_2
+\]
+
+and generally:
+
+\[
+\boxed{
+T_i=C_i-C_{i-1}
+}
+\]
+
+with \(C_0=0\).
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Snapback / Flyback Timing}
+\small
+
+In snapback timing, the stopwatch is reset after each element.
+
+Therefore the displayed reading directly represents the element time.
+
+Advantages:
+
+\begin{itemize}
+    \item easy element-wise reading,
+    \item direct recording,
+    \item convenient for repetitive cycles.
+\end{itemize}
+
+Limitations:
+
+\begin{itemize}
+    \item resetting introduces observer reaction effects,
+    \item small timing errors may accumulate,
+    \item requires careful observer technique.
+\end{itemize}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Observed Time}
+\small
+
+Suppose an element is observed for \(n\) cycles:
+
+\[
+T_1,T_2,\ldots,T_n
+\]
+
+The average observed time is:
+
+\[
+\boxed{
+\bar T_o
+=
+\frac{1}{n}
+\sum_{i=1}^{n}T_i
+}
+\]
+
+If the observations are:
+
+\[
+0.42,\quad0.44,\quad0.43,\quad0.45,\quad0.41
+\]
+
+then:
+
+\[
+\bar T_o
+=
+\frac{0.42+0.44+0.43+0.45+0.41}{5}
+\]
+
+\[
+\boxed{
+\bar T_o=0.430\ \text{min}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Abnormal Observations}
+\small
+
+Not every observed value should automatically be treated as normal.
+
+Possible causes of abnormal observations:
+
+\begin{itemize}
+    \item machine malfunction,
+    \item material shortage,
+    \item interruption,
+    \item unusual fatigue,
+    \item defective component,
+    \item communication interruption,
+    \item measurement error.
+\end{itemize}
+
+\vspace{5pt}
+
+The analyst should investigate the reason before deciding whether
+an observation should be excluded.
+
+\[
+\boxed{
+\text{Statistical outlier} \neq \text{automatically invalid observation}
+}
+\]
+
+\end{frame}
+
+% ============================================================
+% PERFORMANCE RATING
+% ============================================================
+
+\section{Performance Rating}
+
+\begin{frame}{Why is Performance Rating Needed?}
+\small
+
+Two workers may perform the same task at different observed speeds.
+
+Observed time alone therefore does not necessarily represent
+the time corresponding to a defined standard performance level.
+
+Performance rating adjusts the observed time.
+
+\[
+\boxed{
+\text{Normal Time}
+=
+\text{Observed Time}
+\times
+\text{Rating Factor}
+}
+\]
+
+If rating is expressed as a percentage:
+
+\[
+\boxed{
+NT
+=
+OT\left(\frac{R}{100}\right)
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Physical Meaning of Rating}
+\small
+
+Consider:
+
+\[
+OT=0.50\text{ min}
+\]
+
+and
+
+\[
+R=110\%.
+\]
+
+Then:
+
+\[
+NT
+=
+0.50
+\left(
+\frac{110}{100}
+\right)
+\]
+
+\[
+\boxed{
+NT=0.55\text{ min}
+}
+\]
+
+Interpretation:
+
+The worker was observed performing at approximately \(110\%\) of
+the defined standard pace.
+
+Therefore the equivalent time at standard performance is greater
+than the observed time.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Rating Less Than 100\%}
+\small
+
+Suppose:
+
+\[
+OT=0.80\text{ min}
+\]
+
+and
+
+\[
+R=90\%.
+\]
+
+Then:
+
+\[
+NT
+=
+0.80
+\left(
+\frac{90}{100}
+\right)
+\]
+
+\[
+\boxed{
+NT=0.72\text{ min}
+}
+\]
+
+Because the observed worker operated below the reference performance
+level, the equivalent standard-performance time is lower than the
+observed time.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Rating Methods}
+\small
+
+Common approaches include:
+
+\begin{itemize}
+    \item speed rating,
+    \item Westinghouse system,
+    \item synthetic rating,
+    \item objective rating,
+    \item comparison with defined standard performance.
+\end{itemize}
+
+A rating system should attempt to improve consistency between observers.
+
+\vspace{5pt}
+
+However, rating contains human judgment.
+
+Therefore:
+
+\[
+\boxed{
+\text{Rating is a major source of measurement variability}
+}
+\]
+
+\end{frame}
+
+% ============================================================
+% NORMAL TIME
+% ============================================================
+
+\section{Normal Time}
+
+\begin{frame}{Normal Time}
+\small
+
+The \textbf{normal time} is the time required to perform the task
+at the defined standard performance level, excluding allowances.
+
+\[
+\boxed{
+NT=OT\left(\frac{R}{100}\right)
+}
+\]
+
+where:
+
+\begin{itemize}
+    \item \(OT\) = observed time,
+    \item \(R\) = performance rating in percent,
+    \item \(NT\) = normal time.
+\end{itemize}
+
+\vspace{5pt}
+
+The distinction is:
+
+\[
+\boxed{
+OT \rightarrow \text{what was observed}
+}
+\]
+
+\[
+\boxed{
+NT \rightarrow \text{time normalized to reference performance}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Numerical Example: Normal Time}
+\small
+
+A worker completes an element in an average observed time of:
+
+\[
+OT=1.20\text{ min}
+\]
+
+The performance rating is:
+
+\[
+R=95\%.
+\]
+
+Therefore:
+
+\[
+NT
+=
+1.20
+\left(
+\frac{95}{100}
+\right)
+\]
+
+\[
+NT=1.14\text{ min}
+\]
+
+Hence:
+
+\[
+\boxed{
+NT=1.14\text{ min}
+}
+\]
+
+This is the time corresponding to the reference performance level.
+
+\end{frame}
+
+% ============================================================
+% ALLOWANCES
+% ============================================================
+
+\section{Allowances and Standard Time}
+
+\begin{frame}{Why are Allowances Required?}
+\small
+
+A worker cannot continuously perform productive work for the entire
+available working time.
+
+Allowances account for legitimate time associated with:
+
+\begin{itemize}
+    \item personal needs,
+    \item fatigue,
+    \item unavoidable delays,
+    \item machine interruptions,
+    \item process delays,
+    \item special conditions.
+\end{itemize}
+
+Therefore:
+
+\[
+\boxed{
+ST>NT
+}
+\]
+
+for a positive allowance.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Types of Allowances}
+\small
+
+Important categories include:
+
+\begin{enumerate}
+    \item \textbf{Personal allowance}
+    \item \textbf{Fatigue allowance}
+    \item \textbf{Delay allowance}
+    \item \textbf{Contingency allowance}
+    \item \textbf{Special allowance}
+\end{enumerate}
+
+\vspace{5pt}
+
+The exact allowance depends on:
+
+\begin{itemize}
+    \item work environment,
+    \item physical effort,
+    \item mental effort,
+    \item posture,
+    \item temperature,
+    \item vibration,
+    \item lighting,
+    \item process characteristics.
+\end{itemize}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Standard Time: Allowance Convention 1}
+\small
+
+If allowance is expressed as a fraction of normal time:
+
+\[
+A=\frac{\text{Allowance time}}{\text{Normal time}}
+\]
+
+then:
+
+\[
+\boxed{
+ST=NT(1+A)
+}
+\]
+
+Example:
+
+\[
+NT=10\text{ min},\qquad A=15\%=0.15
+\]
+
+Therefore:
+
+\[
+ST=10(1.15)
+\]
+
+\[
+\boxed{
+ST=11.5\text{ min}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Standard Time: Allowance Convention 2}
+\small
+
+Sometimes the allowance is defined as a fraction of the
+\textbf{total standard time}.
+
+If:
+
+\[
+A=
+\frac{\text{Allowance time}}{\text{Standard time}}
+\]
+
+then:
+
+\[
+NT=ST(1-A)
+\]
+
+Therefore:
+
+\[
+\boxed{
+ST=\frac{NT}{1-A}
+}
+\]
+
+Example:
+
+\[
+NT=10,\qquad A=0.15
+\]
+
+\[
+ST=\frac{10}{0.85}
+\]
+
+\[
+\boxed{
+ST=11.765\text{ min}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Why Two Allowance Formulas Exist}
+\small
+
+The two equations:
+
+\[
+ST=NT(1+A)
+\]
+
+and
+
+\[
+ST=\frac{NT}{1-A}
+\]
+
+are both valid under different definitions of allowance.
+
+\vspace{6pt}
+
+Therefore the analyst must always ask:
+
+\[
+\boxed{
+\text{Allowance is a percentage of WHAT?}
+}
+\]
+
+\vspace{5pt}
+
+Never apply an allowance formula without checking its definition.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Complete Time Study Calculation}
+\small
+
+Suppose:
+
+\[
+OT=2.0\text{ min}
+\]
+
+\[
+R=110\%
+\]
+
+\[
+A=15\%
+\]
+
+Using the first convention:
+
+\[
+NT
+=
+2.0(1.10)
+=
+2.20\text{ min}
+\]
+
+Then:
+
+\[
+ST
+=
+2.20(1.15)
+\]
+
+\[
+\boxed{
+ST=2.53\text{ min}
+}
+\]
+
+Thus:
+
+\[
+\boxed{
+OT\rightarrow NT\rightarrow ST
+}
+\]
+
+\[
+2.00\rightarrow2.20\rightarrow2.53\text{ min}
+\]
+
+\end{frame}
+
+% ============================================================
+% WORK SAMPLING
+% ============================================================
+
+\section{Work Sampling}
+
+\begin{frame}{What is Work Sampling?}
+\small
+
+\textbf{Work sampling} estimates the proportion of time spent on
+different activities by taking observations at randomly selected
+times.
+
+Unlike stopwatch time study, it does not continuously observe the
+worker.
+
+\vspace{5pt}
+
+It is based on probability.
+
+For an activity observed \(x\) times in \(n\) observations:
+
+\[
+\boxed{
+\hat p=\frac{x}{n}
+}
+\]
+
+where \(\hat p\) estimates the true proportion \(p\).
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{When is Work Sampling Useful?}
+\small
+
+Work sampling is especially useful when:
+
+\begin{itemize}
+    \item work cycles are long,
+    \item activities are irregular,
+    \item workers perform several different tasks,
+    \item continuous timing is expensive,
+    \item machine utilization is being studied,
+    \item delay proportions are required.
+\end{itemize}
+
+Examples:
+
+\begin{itemize}
+    \item maintenance personnel,
+    \item supervisors,
+    \item machine operators,
+    \item material handlers,
+    \item office activities.
+\end{itemize}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Probability Model for Work Sampling}
+\small
+
+Each observation can be considered as a Bernoulli trial:
+
+\[
+X=
+\begin{cases}
+1,&\text{activity is observed}\\
+0,&\text{activity is not observed}
+\end{cases}
+\]
+
+with:
+
+\[
+P(X=1)=p
+\]
+
+and
+
+\[
+P(X=0)=1-p=q.
+\]
+
+For \(n\) independent observations:
+
+\[
+X\sim\mathrm{Binomial}(n,p).
+\]
+
+Therefore:
+
+\[
+E(X)=np
+\]
+
+and
+
+\[
+Var(X)=np(1-p).
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Estimator of Activity Proportion}
+\small
+
+If \(x\) observations correspond to the activity:
+
+\[
+\boxed{
+\hat p=\frac{x}{n}
+}
+\]
+
+The complementary proportion is:
+
+\[
+\boxed{
+\hat q=1-\hat p
+}
+\]
+
+For example:
+
+\[
+x=180,\qquad n=1000
+\]
+
+then:
+
+\[
+\hat p=\frac{180}{1000}=0.18.
+\]
+
+Therefore approximately:
+
+\[
+\boxed{
+18\%
+}
+\]
+
+of observed time corresponds to the activity.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Variance and Standard Error}
+\small
+
+For the sample proportion:
+
+\[
+Var(\hat p)
+=
+\frac{p(1-p)}{n}
+\]
+
+Therefore:
+
+\[
+\boxed{
+\sigma_{\hat p}
+=
+\sqrt{
+\frac{p(1-p)}{n}
+}
+}
+\]
+
+Since \(p\) is usually unknown, estimate it using \(\hat p\):
+
+\[
+\boxed{
+SE(\hat p)
+=
+\sqrt{
+\frac{\hat p(1-\hat p)}{n}
+}
+}
+\]
+
+Thus increasing \(n\) reduces uncertainty.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Confidence Interval for Work Sampling}
+\small
+
+For sufficiently large sample size, an approximate confidence interval is:
+
+\[
+\boxed{
+\hat p
+\pm
+z_{\alpha/2}
+\sqrt{
+\frac{\hat p(1-\hat p)}{n}
+}
+}
+\]
+
+For a 95\% confidence interval:
+
+\[
+z_{0.025}=1.96
+\]
+
+Hence:
+
+\[
+\boxed{
+CI_{95\%}
+=
+\hat p
+\pm
+1.96
+\sqrt{
+\frac{\hat p(1-\hat p)}{n}
+}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Sample Size for Work Sampling}
+\small
+
+If the desired half-width of error is \(e\):
+
+\[
+e=
+z_{\alpha/2}
+\sqrt{
+\frac{pq}{n}
+}
+\]
+
+Squaring:
+
+\[
+e^2=
+z_{\alpha/2}^2
+\frac{pq}{n}
+\]
+
+Therefore:
+
+\[
+\boxed{
+n=
+\frac{
+z_{\alpha/2}^2pq
+}{
+e^2
+}
+}
+\]
+
+If \(p\) is unknown, the conservative value:
+
+\[
+p=q=0.5
+\]
+
+is often used because:
+
+\[
+pq=0.25
+\]
+
+is maximum at \(p=0.5\).
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Numerical Example: Sample Size}
+\small
+
+Find \(n\) for:
+
+\[
+95\%\text{ confidence}
+\]
+
+\[
+e=0.05
+\]
+
+and assume:
+
+\[
+p=0.50.
+\]
+
+Then:
+
+\[
+n=
+\frac{(1.96)^2(0.5)(0.5)}
+{(0.05)^2}
+\]
+
+\[
+n=
+\frac{3.8416(0.25)}
+{0.0025}
+\]
+
+\[
+\boxed{
+n\approx384.16
+}
+\]
+
+Therefore:
+
+\[
+\boxed{
+n=385\text{ observations}
+}
+\]
+
+after rounding upward.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Work Sampling: Numerical Example}
+\small
+
+Suppose:
+
+\[
+n=500
+\]
+
+random observations are taken and the worker is found to be idle in:
+
+\[
+x=75
+\]
+
+observations.
+
+Then:
+
+\[
+\hat p=\frac{75}{500}=0.15.
+\]
+
+Therefore:
+
+\[
+\boxed{
+15\%
+}
+\]
+
+of observations indicate idle time.
+
+For 95\% confidence:
+
+\[
+SE=
+\sqrt{
+\frac{0.15(0.85)}{500}
+}
+\]
+
+\[
+SE\approx0.01597.
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Interpretation of Work Sampling Result}
+\small
+
+For the previous example:
+
+\[
+CI
+=
+0.15
+\pm
+1.96(0.01597)
+\]
+
+\[
+CI
+\approx
+0.15\pm0.0313.
+\]
+
+Therefore:
+
+\[
+\boxed{
+0.1187\le p\le0.1813
+}
+\]
+
+approximately.
+
+Interpretation:
+
+At the stated confidence level and under the sampling assumptions,
+the true idle proportion is estimated within this interval.
+
+\end{frame}
+
+% ============================================================
+% STATISTICAL QUALITY CONTROL
+% ============================================================
+
+\section{Statistical Quality Control}
+
+\begin{frame}{What is Statistical Quality Control?}
+\small
+
+\textbf{Statistical Quality Control (SQC)} uses statistical methods
+to monitor, control and improve process quality.
+
+The fundamental idea is:
+
+\[
+\boxed{
+\text{Variation exists in every process}
+}
+\]
+
+The engineering objective is to distinguish:
+
+\[
+\boxed{
+\text{Common causes}
+}
+\]
+
+from:
+
+\[
+\boxed{
+\text{Special causes}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Why Does Variation Occur?}
+\small
+
+Sources of variation may include:
+
+\begin{itemize}
+    \item raw material variation,
+    \item machine variation,
+    \item tool wear,
+    \item temperature,
+    \item operator differences,
+    \item measurement variation,
+    \item environmental conditions,
+    \item process disturbances.
+\end{itemize}
+
+Variation is therefore not automatically evidence of a defective
+process.
+
+The key question is:
+
+\[
+\boxed{
+\text{Is the observed variation consistent with the established process system?}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Common Causes}
+\small
+
+\textbf{Common causes} are sources of variation inherent in the
+normal operation of the process.
+
+Examples:
+
+\begin{itemize}
+    \item normal machine vibration,
+    \item small raw-material differences,
+    \item ordinary measurement variation,
+    \item normal environmental variation.
+\end{itemize}
+
+If only common causes are present, the process is statistically
+stable around its current operating condition.
+
+\vspace{5pt}
+
+A change in common-cause variation generally requires a
+\textbf{system-level change}.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Special Causes}
+\small
+
+\textbf{Special causes} are unusual sources of variation that are
+not part of the normal process system.
+
+Examples:
+
+\begin{itemize}
+    \item broken tool,
+    \item incorrect machine setting,
+    \item defective raw material batch,
+    \item sensor malfunction,
+    \item sudden temperature excursion,
+    \item operator or machine disturbance.
+\end{itemize}
+
+The objective of control-chart analysis is to identify evidence
+that such causes may be present.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Control Limits vs Specification Limits}
+\small
+
+These concepts must not be confused.
+
+\textbf{Control limits} are calculated from process data.
+
+They describe expected process variation under statistical control.
+
+\textbf{Specification limits} are engineering/customer requirements.
+
+\[
+\boxed{
+\text{Control limits}\neq\text{Specification limits}
+}
+\]
+
+A process can be:
+
+\begin{itemize}
+    \item statistically stable but incapable of meeting specifications,
+    \item unstable but temporarily producing conforming items,
+    \item stable and capable,
+    \item unstable and incapable.
+\end{itemize}
+
+\end{frame}
+
+% ============================================================
+% VARIABLES AND ATTRIBUTES
+% ============================================================
+
+\section{Variables and Attributes}
+
+\begin{frame}{Variables Data}
+\small
+
+Variables data are quantitative measurements.
+
+Examples:
+
+\begin{itemize}
+    \item shaft diameter,
+    \item thickness,
+    \item mass,
+    \item tensile strength,
+    \item temperature,
+    \item surface roughness.
+\end{itemize}
+
+A measurement may take many numerical values.
+
+For example:
+
+\[
+24.98,\quad24.99,\quad25.01,\quad25.03\text{ mm}
+\]
+
+Variables charts generally use more information per observation.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Attributes Data}
+\small
+
+Attributes data classify observations.
+
+Examples:
+
+\begin{itemize}
+    \item defective / non-defective,
+    \item pass / fail,
+    \item defect count,
+    \item conforming / nonconforming.
+\end{itemize}
+
+Two important forms are:
+
+\[
+\boxed{
+\text{Fraction defective}
+}
+\]
+
+and
+
+\[
+\boxed{
+\text{Number of defects}
+}
+\]
+
+These lead to different control charts.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Variables vs Attributes}
+\small
+
+\begin{tabularx}{\textwidth}{YYY}
+\toprule
+Feature & Variables & Attributes\\
+\midrule
+Data type & Measured numerical value & Classification/count\\
+Example & Diameter & Defective unit\\
+Distribution & Often continuous & Binomial/Poisson models\\
+Charts & $\bar X$, $R$, $S$ & $p$, $np$, $c$, $u$\\
+Information & Detailed measurement & Classification/count\\
+\bottomrule
+\end{tabularx}
+
+\end{frame}
+
+% ============================================================
+% SHEWHART CONTROL CHARTS
+% ============================================================
+
+\section{Shewhart Control Charts}
+
+\begin{frame}{Basic Structure of a Control Chart}
+\small
+
+A Shewhart chart contains:
+
+\[
+\boxed{\text{Center Line}}
+\]
+
+\[
+\boxed{\text{Upper Control Limit}}
+\]
+
+\[
+\boxed{\text{Lower Control Limit}}
+\]
+
+For a generic statistic \(T\):
+
+\[
+UCL=\mu_T+3\sigma_T
+\]
+
+\[
+CL=\mu_T
+\]
+
+\[
+LCL=\mu_T-3\sigma_T
+\]
+
+approximately.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Why Three Sigma?}
+\small
+
+For a normal distribution:
+
+\[
+P(|Z|\le3)\approx0.9973.
+\]
+
+Therefore:
+
+\[
+P(|Z|>3)\approx0.0027.
+\]
+
+Thus approximately:
+
+\[
+99.73\%
+\]
+
+of observations are expected within \(\pm3\sigma\) when the
+normal model is appropriate.
+
+This provides a practical basis for Shewhart control limits.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Interpretation of a Control Chart}
+\small
+
+A process may show evidence of unusual behavior when observations
+exhibit patterns such as:
+
+\begin{itemize}
+    \item a point beyond a control limit,
+    \item a long run on one side of the center line,
+    \item a sustained trend,
+    \item systematic cycles,
+    \item unusual clustering.
+\end{itemize}
+
+These patterns should be treated as signals for investigation.
+
+\[
+\boxed{
+\text{Signal}\rightarrow\text{Investigate process}
+}
+\]
+
+A control chart does not automatically identify the physical cause.
+
+\end{frame}
+
+% ============================================================
+% XBAR-R CHART
+% ============================================================
+
+\section{$\bar X$--$R$ Charts}
+
+\begin{frame}{$\bar X$--$R$ Control Charts}
+\small
+
+For measurable quality characteristics with rational subgroups,
+the $\bar X$ and $R$ charts are commonly used together.
+
+\[
+\boxed{
+\bar X\text{ chart}\rightarrow\text{process location}
+}
+\]
+
+\[
+\boxed{
+R\text{ chart}\rightarrow\text{within-subgroup variation}
+}
+\]
+
+A subgroup contains \(n\) observations.
+
+For subgroup \(i\):
+
+\[
+\bar X_i=
+\frac{1}{n}
+\sum_{j=1}^{n}X_{ij}
+\]
+
+and:
+
+\[
+R_i=X_{\max}-X_{\min}.
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{R Chart}
+\small
+
+For each subgroup:
+
+\[
+R_i=X_{\max,i}-X_{\min,i}.
+\]
+
+The average range is:
+
+\[
+\boxed{
+\bar R=
+\frac{1}{k}
+\sum_{i=1}^{k}R_i
+}
+\]
+
+where \(k\) is the number of subgroups.
+
+Control limits:
+
+\[
+\boxed{
+UCL_R=D_4\bar R
+}
+\]
+
+\[
+\boxed{
+CL_R=\bar R
+}
+\]
+
+\[
+\boxed{
+LCL_R=D_3\bar R
+}
+\]
+
+The constants depend on subgroup size.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{$\bar X$ Chart}
+\small
+
+Calculate the average of subgroup means:
+
+\[
+\boxed{
+\bar{\bar X}
+=
+\frac{1}{k}
+\sum_{i=1}^{k}\bar X_i
+}
+\]
+
+Then:
+
+\[
+\boxed{
+UCL_{\bar X}
+=
+\bar{\bar X}
++
+A_2\bar R
+}
+\]
+
+\[
+\boxed{
+CL_{\bar X}
+=
+\bar{\bar X}
+}
+\]
+
+\[
+\boxed{
+LCL_{\bar X}
+=
+\bar{\bar X}
+-
+A_2\bar R
+}
+\]
+
+The constant \(A_2\) depends on subgroup size.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Why Rational Subgroups?}
+\small
+
+A rational subgroup should contain observations collected under
+conditions where within-subgroup variation represents short-term
+process variation.
+
+Between-subgroup differences can then reveal:
+
+\begin{itemize}
+    \item shifts in process mean,
+    \item changes in process conditions,
+    \item gradual trends,
+    \item special causes.
+\end{itemize}
+
+Poor subgroup construction can hide important process behavior.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Important $\bar X$--$R$ Constants}
+\small
+
+Typical constants include:
+
+\begin{tabularx}{\textwidth}{CCCCC}
+\toprule
+\(n\) & \(A_2\) & \(D_3\) & \(D_4\) & \(d_2\)\\
+\midrule
+2 & 1.880 & 0 & 3.267 & 1.128\\
+3 & 1.023 & 0 & 2.574 & 1.693\\
+4 & 0.729 & 0 & 2.282 & 2.059\\
+5 & 0.577 & 0 & 2.114 & 2.326\\
+6 & 0.483 & 0 & 2.004 & 2.534\\
+\bottomrule
+\end{tabularx}
+
+The constants depend on the statistical relationship between
+range and process standard deviation.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Estimating Process Standard Deviation}
+\small
+
+For a range-based estimate:
+
+\[
+\boxed{
+\hat\sigma=
+\frac{\bar R}{d_2}
+}
+\]
+
+where \(d_2\) depends on subgroup size.
+
+This relationship is based on the expected range of a sample
+from a normal population.
+
+Therefore the range can provide an estimate of short-term
+process dispersion.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{$\bar X$--$R$: Numerical Example}
+\small
+
+Suppose five subgroups of size four have:
+
+\[
+\bar X_i=
+10.2,\ 10.4,\ 10.1,\ 10.3,\ 10.5
+\]
+
+and:
+
+\[
+R_i=
+0.4,\ 0.5,\ 0.3,\ 0.4,\ 0.6.
+\]
+
+Then:
+
+\[
+\bar{\bar X}
+=
+\frac{10.2+10.4+10.1+10.3+10.5}{5}
+\]
+
+\[
+\boxed{
+\bar{\bar X}=10.30
+}
+\]
+
+and:
+
+\[
+\boxed{
+\bar R=\frac{0.4+0.5+0.3+0.4+0.6}{5}=0.44
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{$\bar X$--$R$: Control Limits}
+\small
+
+For \(n=4\):
+
+\[
+A_2=0.729
+\]
+
+\[
+D_3=0
+\]
+
+\[
+D_4=2.282.
+\]
+
+Therefore:
+
+\[
+UCL_{\bar X}
+=
+10.30+(0.729)(0.44)
+\]
+
+\[
+\boxed{
+UCL_{\bar X}=10.621
+}
+\]
+
+and:
+
+\[
+LCL_{\bar X}
+=
+10.30-(0.729)(0.44)
+\]
+
+\[
+\boxed{
+LCL_{\bar X}=9.979
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{R Chart: Numerical Calculation}
+\small
+
+Using:
+
+\[
+\bar R=0.44
+\]
+
+and:
+
+\[
+D_3=0,\qquad D_4=2.282,
+\]
+
+we obtain:
+
+\[
+UCL_R=(2.282)(0.44)
+\]
+
+\[
+\boxed{
+UCL_R=1.004
+}
+\]
+
+and:
+
+\[
+LCL_R=(0)(0.44)=0.
+\]
+
+Thus:
+
+\[
+\boxed{
+0\le R\le1.004
+}
+\]
+
+represents the approximate control region for the range chart.
+
+\end{frame}
+
+% ============================================================
+% DEFECT / DEFECTIVE
+% ============================================================
+
+\section{Defects and Defectives}
+
+\begin{frame}{Defect vs Defective}
+\small
+
+A \textbf{defect} is a specific nonconformity.
+
+A \textbf{defective unit} is a unit having one or more defects that
+cause it to be classified as nonconforming.
+
+Example:
+
+One component may contain:
+
+\[
+\text{Scratch}+\text{Dent}+\text{Dimensional error}
+\]
+
+which represents:
+
+\[
+3\text{ defects}
+\]
+
+but potentially only:
+
+\[
+1\text{ defective unit}.
+\]
+
+\end{frame}
+
+% ============================================================
+% P CHART
+% ============================================================
+
+\section{$p$ Chart}
+
+\begin{frame}{$p$ Control Chart}
+\small
+
+The \(p\)-chart monitors the fraction or proportion of defective
+units in a sample.
+
+For sample \(i\):
+
+\[
+\boxed{
+p_i=
+\frac{d_i}{n_i}
+}
+\]
+
+where:
+
+\begin{itemize}
+    \item \(d_i\) = number of defective units,
+    \item \(n_i\) = sample size.
+\end{itemize}
+
+If the process fraction defective is \(p\):
+
+\[
+D_i\sim\mathrm{Binomial}(n_i,p).
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Mean Fraction Defective}
+\small
+
+For equal or varying sample sizes, an estimate of the overall
+fraction defective is:
+
+\[
+\boxed{
+\bar p
+=
+\frac{\sum d_i}{\sum n_i}
+}
+\]
+
+Then:
+
+\[
+\boxed{
+\bar q=1-\bar p
+}
+\]
+
+For equal sample sizes this is equivalent to averaging the
+sample proportions.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{$p$ Chart Control Limits}
+\small
+
+For sample size \(n\):
+
+\[
+\sigma_p=
+\sqrt{
+\frac{\bar p(1-\bar p)}{n}
+}
+\]
+
+Therefore:
+
+\[
+\boxed{
+UCL_p=
+\bar p+
+3
+\sqrt{
+\frac{\bar p(1-\bar p)}{n}
+}
+}
+\]
+
+\[
+\boxed{
+CL_p=\bar p
+}
+\]
+
+\[
+\boxed{
+LCL_p=
+\bar p-
+3
+\sqrt{
+\frac{\bar p(1-\bar p)}{n}
+}
+}
+\]
+
+If \(LCL_p<0\), it is set to zero.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{$p$ Chart: Numerical Example}
+\small
+
+Suppose:
+
+\[
+n=100
+\]
+
+units are inspected in each sample.
+
+Observed defectives:
+
+\[
+8,\ 5,\ 7,\ 10,\ 6.
+\]
+
+Total defectives:
+
+\[
+\sum d_i=36.
+\]
+
+Total inspected:
+
+\[
+5(100)=500.
+\]
+
+Therefore:
+
+\[
+\bar p=\frac{36}{500}=0.072.
+\]
+
+\[
+\boxed{
+\bar p=7.2\%
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{$p$ Chart: Control Limits}
+\small
+
+For:
+
+\[
+\bar p=0.072,\qquad n=100,
+\]
+
+the standard deviation is:
+
+\[
+\sigma_p
+=
+\sqrt{
+\frac{0.072(0.928)}{100}
+}
+\]
+
+\[
+\sigma_p\approx0.02585.
+\]
+
+Therefore:
+
+\[
+UCL=0.072+3(0.02585)
+\]
+
+\[
+\boxed{
+UCL\approx0.1496
+}
+\]
+
+and:
+
+\[
+LCL=0.072-3(0.02585)<0.
+\]
+
+Hence:
+
+\[
+\boxed{
+LCL=0
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Unequal Sample Sizes in a $p$ Chart}
+\small
+
+If sample size varies:
+
+\[
+n_1\neq n_2\neq\cdots
+\]
+
+then each sample has a different standard error.
+
+For sample \(i\):
+
+\[
+\boxed{
+UCL_i=
+\bar p+
+3
+\sqrt{
+\frac{\bar p(1-\bar p)}{n_i}
+}
+}
+\]
+
+\[
+\boxed{
+LCL_i=
+\bar p-
+3
+\sqrt{
+\frac{\bar p(1-\bar p)}{n_i}
+}
+}
+\]
+
+Thus the control limits vary with sample size.
+
+\end{frame}
+
+% ============================================================
+% C CHART
+% ============================================================
+
+\section{$c$ Chart}
+
+\begin{frame}{$c$ Control Chart}
+\small
+
+The \(c\)-chart monitors the number of defects per inspection unit
+when the opportunity for defects is constant.
+
+The usual model is:
+
+\[
+\boxed{
+C\sim\mathrm{Poisson}(c)
+}
+\]
+
+For a Poisson distribution:
+
+\[
+E(C)=c
+\]
+
+and:
+
+\[
+Var(C)=c.
+\]
+
+Therefore:
+
+\[
+\sigma_c=\sqrt c.
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{$c$ Chart Control Limits}
+\small
+
+If the average number of defects is:
+
+\[
+\bar c=
+\frac{1}{k}\sum_{i=1}^{k}c_i,
+\]
+
+then:
+
+\[
+\boxed{
+UCL_c=\bar c+3\sqrt{\bar c}
+}
+\]
+
+\[
+\boxed{
+CL_c=\bar c
+}
+\]
+
+\[
+\boxed{
+LCL_c=\bar c-3\sqrt{\bar c}
+}
+\]
+
+If the lower limit is negative:
+
+\[
+\boxed{
+LCL_c=0
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{$c$ Chart: Numerical Example}
+\small
+
+Suppose the observed defect counts are:
+
+\[
+4,\ 7,\ 5,\ 6,\ 8.
+\]
+
+Then:
+
+\[
+\bar c=
+\frac{4+7+5+6+8}{5}
+\]
+
+\[
+\boxed{
+\bar c=6
+}
+\]
+
+The standard deviation is:
+
+\[
+\sqrt 6=2.449.
+\]
+
+Therefore:
+
+\[
+UCL=6+3(2.449)
+\]
+
+\[
+\boxed{
+UCL\approx13.35
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{$p$ Chart vs $c$ Chart}
+\small
+
+\begin{tabularx}{\textwidth}{YYY}
+\toprule
+Feature & $p$ chart & $c$ chart\\
+\midrule
+Quantity & Fraction defective & Number of defects\\
+Unit status & Defective/nondefective & Multiple defects possible\\
+Distribution & Binomial & Poisson\\
+Sample size & Can vary & Inspection opportunity normally constant\\
+Example & Defective shafts & Scratches per sheet\\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+The choice depends on what is being counted.
+
+\end{frame}
+
+% ============================================================
+% ACCEPTANCE SAMPLING
+% ============================================================
+
+\section{Acceptance Sampling}
+
+\begin{frame}{What is Acceptance Sampling?}
+\small
+
+Acceptance sampling is a procedure in which a sample is taken
+from a lot and the lot is accepted or rejected based on sample
+results.
+
+It is different from process control.
+
+\[
+\boxed{
+\text{Control chart}
+\rightarrow
+\text{controls a process}
+}
+\]
+
+\[
+\boxed{
+\text{Acceptance sampling}
+\rightarrow
+\text{makes a lot decision}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Why Use Acceptance Sampling?}
+\small
+
+100\% inspection may be undesirable when:
+
+\begin{itemize}
+    \item inspection is destructive,
+    \item inspection is expensive,
+    \item the lot is very large,
+    \item inspection time is excessive,
+    \item only a statistical decision is required.
+\end{itemize}
+
+However, sampling introduces risks because the entire lot
+is not observed.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Single Sampling Plan}
+\small
+
+A single sampling plan is defined by:
+
+\[
+\boxed{
+(n,c)
+}
+\]
+
+where:
+
+\begin{itemize}
+    \item \(n\) = sample size,
+    \item \(c\) = acceptance number.
+\end{itemize}
+
+Procedure:
+
+\begin{enumerate}
+    \item Select \(n\) units.
+    \item Count nonconforming units.
+    \item If number defective \(\le c\), accept the lot.
+    \item If number defective \(>c\), reject the lot.
+\end{enumerate}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Binomial Model for Acceptance Sampling}
+\small
+
+For a large lot or independent sampling approximation:
+
+\[
+X\sim\mathrm{Binomial}(n,p)
+\]
+
+where:
+
+\[
+P(X=x)
+=
+{n\choose x}
+p^x(1-p)^{n-x}.
+\]
+
+For a single sampling plan \((n,c)\):
+
+\[
+\boxed{
+P_a(p)
+=
+P(X\le c)
+}
+\]
+
+Therefore:
+
+\[
+\boxed{
+P_a(p)
+=
+\sum_{x=0}^{c}
+{n\choose x}
+p^x(1-p)^{n-x}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Acceptance Probability Example}
+\small
+
+Consider:
+
+\[
+n=20,\qquad c=1.
+\]
+
+If:
+
+\[
+p=0.05,
+\]
+
+the lot is accepted when:
+
+\[
+X=0
+\]
+
+or:
+
+\[
+X=1.
+\]
+
+Thus:
+
+\[
+P_a=P(X=0)+P(X=1).
+\]
+
+For the binomial distribution:
+
+\[
+P(X=0)=(0.95)^{20}
+\]
+
+and:
+
+\[
+P(X=1)=20(0.05)(0.95)^{19}.
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Numerical Acceptance Probability}
+\small
+
+For:
+
+\[
+n=20,\quad c=1,\quad p=0.05
+\]
+
+we obtain approximately:
+
+\[
+P(X=0)\approx0.3585
+\]
+
+and:
+
+\[
+P(X=1)\approx0.3774.
+\]
+
+Therefore:
+
+\[
+P_a
+\approx
+0.3585+0.3774
+\]
+
+\[
+\boxed{
+P_a\approx0.7359
+}
+\]
+
+Thus approximately \(73.6\%\) of such lots would be accepted
+under this model.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Hypergeometric Model}
+\small
+
+For sampling without replacement from a finite lot, the
+hypergeometric distribution may be appropriate.
+
+If:
+
+\begin{itemize}
+    \item \(N\) = lot size,
+    \item \(D\) = defective units in lot,
+    \item \(n\) = sample size,
+    \item \(x\) = defectives in sample,
+\end{itemize}
+
+then:
+
+\[
+\boxed{
+P(X=x)
+=
+\frac{
+{D\choose x}
+{N-D\choose n-x}
+}{
+{N\choose n}
+}
+}
+\]
+
+This accounts explicitly for finite-population sampling.
+
+\end{frame}
+
+% ============================================================
+% DOUBLE SAMPLING
+% ============================================================
+
+\section{Double Sampling}
+
+\begin{frame}{Double Sampling Plan}
+\small
+
+A double sampling plan allows a second sample when the first
+sample does not provide a sufficiently clear decision.
+
+Typical sequence:
+
+\[
+\boxed{
+\text{First sample}
+\rightarrow
+\begin{cases}
+\text{Accept}\\
+\text{Reject}\\
+\text{Take second sample}
+\end{cases}
+}
+\]
+
+The second sample can reduce inspection effort for lots that
+are clearly good or clearly bad.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Conceptual Double Sampling Example}
+\small
+
+Suppose the first sample contains:
+
+\[
+n_1=50
+\]
+
+units.
+
+Possible decision:
+
+\begin{itemize}
+    \item If defectives \(\le c_1\): accept.
+    \item If defectives \(>r_1\): reject.
+    \item If \(c_1<d_1\le r_1\): take second sample.
+\end{itemize}
+
+After the second sample:
+
+\[
+d_1+d_2
+\]
+
+is compared with a second acceptance criterion.
+
+\vspace{5pt}
+
+The exact plan is determined by the specified sampling standard.
+
+\end{frame}
+
+% ============================================================
+% OC CURVES
+% ============================================================
+
+\section{Operating Characteristic Curves}
+
+\begin{frame}{Operating Characteristic Curve}
+\small
+
+The \textbf{Operating Characteristic (OC) curve} shows:
+
+\[
+\boxed{
+P_a
+\text{ versus }
+p
+}
+\]
+
+where:
+
+\begin{itemize}
+    \item \(P_a\) = probability of accepting the lot,
+    \item \(p\) = fraction defective in the lot.
+\end{itemize}
+
+For a fixed sampling plan:
+
+\[
+(n,c),
+\]
+
+the OC curve describes how the plan behaves for different
+quality levels.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Shape of an OC Curve}
+\small
+
+A typical OC curve has:
+
+\[
+P_a\approx1
+\]
+
+for very low defect levels.
+
+As the lot defect level increases:
+
+\[
+P_a\downarrow
+\]
+
+because it becomes increasingly difficult for the lot to satisfy
+the acceptance criterion.
+
+Therefore:
+
+\[
+\boxed{
+\text{Higher lot defect level}
+\rightarrow
+\text{lower acceptance probability}
+}
+\]
+
+for a conventional single sampling plan.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Effect of Acceptance Number \(c\)}
+\small
+
+For fixed \(n\):
+
+\begin{itemize}
+    \item Increasing \(c\) makes acceptance possible for more
+    defective units.
+    \item Decreasing \(c\) makes the acceptance criterion stricter.
+\end{itemize}
+
+The acceptance probability is:
+
+\[
+P_a=P(X\le c).
+\]
+
+Therefore changing \(c\) directly changes the OC curve.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Effect of Sample Size \(n\)}
+\small
+
+For a fixed acceptance rule, increasing sample size generally
+provides more information about the lot.
+
+A larger sample can distinguish different quality levels more
+sharply.
+
+However:
+
+\[
+\boxed{
+\text{larger }n
+\rightarrow
+\text{higher inspection cost}
+}
+\]
+
+Therefore sampling-plan design involves balancing information
+and inspection effort.
+
+\end{frame}
+
+% ============================================================
+% AQL / LTPD / RISKS
+% ============================================================
+
+\section{AQL, LTPD and Risks}
+
+\begin{frame}{Acceptable Quality Level}
+\small
+
+The \textbf{AQL} is a specified quality level used in sampling-plan
+design and quality assurance.
+
+It is associated with a high probability of acceptance under the
+chosen sampling plan.
+
+It should not be interpreted as:
+
+\[
+\boxed{
+\text{AQL = guaranteed defect level}
+}
+\]
+
+Instead, it is a parameter within a statistical sampling system.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{LTPD / RQL}
+\small
+
+The \textbf{Lot Tolerance Percent Defective (LTPD)} or related
+Rejectable Quality Level (RQL) represents an undesirable quality
+level used to characterize consumer protection.
+
+At this quality level, the probability of accepting the lot is
+designed to be relatively low.
+
+Thus:
+
+\[
+\boxed{
+\text{AQL}\rightarrow\text{producer-side quality point}
+}
+\]
+
+\[
+\boxed{
+\text{LTPD/RQL}\rightarrow\text{consumer-side protection point}
+}
+\]
+
+Exact definitions depend on the sampling standard being used.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Producer's Risk \(\alpha\)}
+\small
+
+Producer's risk is the probability of rejecting a lot considered
+to be of acceptable quality.
+
+At the chosen AQL:
+
+\[
+\boxed{
+\alpha
+=
+P(\text{reject}\mid\text{acceptable quality})
+}
+\]
+
+Since:
+
+\[
+P_a=P(\text{accept}),
+\]
+
+we have:
+
+\[
+\boxed{
+\alpha=1-P_a
+}
+\]
+
+at the specified acceptable-quality point.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Consumer's Risk \(\beta\)}
+\small
+
+Consumer's risk is the probability of accepting a lot associated
+with an undesirable quality level.
+
+At the specified LTPD/RQL:
+
+\[
+\boxed{
+\beta
+=
+P(\text{accept}\mid\text{poor quality})
+}
+\]
+
+Therefore:
+
+\[
+\boxed{
+\beta=P_a(p_{\mathrm{LTPD}})
+}
+\]
+
+The sampling plan is designed to control both types of risk
+according to the specified requirements.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Producer vs Consumer Risk}
+\small
+
+\begin{tabularx}{\textwidth}{YYY}
+\toprule
+Feature & Producer's risk & Consumer's risk\\
+\midrule
+Symbol & $\alpha$ & $\beta$\\
+Concern & Good lot rejected & Poor lot accepted\\
+Quality point & AQL & LTPD/RQL\\
+Decision error & False rejection & False acceptance\\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+Both risks exist because only a sample is inspected.
+
+\end{frame}
+
+% ============================================================
+% CONTROL CHART VS ACCEPTANCE SAMPLING
+% ============================================================
+
+\section{Control Charts vs Acceptance Sampling}
+
+\begin{frame}{Process Control vs Lot Acceptance}
+\small
+
+\begin{tabularx}{\textwidth}{YYY}
+\toprule
+Feature & Control chart & Acceptance sampling\\
+\midrule
+Purpose & Monitor process & Decide about lot\\
+Data sequence & Sequential & Sample-based\\
+Main question & Is process stable? & Accept or reject lot?\\
+Typical tool & $\bar X$, $R$, $p$, $c$ & Single/double sampling\\
+Action & Investigate process & Lot decision\\
+Primary focus & Process variation & Lot quality\\
+\bottomrule
+\end{tabularx}
+
+\end{frame}
+
+% ============================================================
+% ASSUMPTIONS
+% ============================================================
+
+\section{Assumptions and Limitations}
+
+\begin{frame}{Assumptions in Time Study}
+\small
+
+Typical assumptions include:
+
+\begin{itemize}
+    \item method is clearly defined,
+    \item worker is qualified,
+    \item observations are representative,
+    \item equipment is operating normally,
+    \item abnormal interruptions are identified,
+    \item rating is applied consistently,
+    \item allowance definitions are clear.
+\end{itemize}
+
+\vspace{5pt}
+
+If these assumptions are violated, the resulting standard time may
+not represent the intended operating condition.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Limitations of Time Study}
+\small
+
+Potential limitations:
+
+\begin{itemize}
+    \item observer influence,
+    \item rating subjectivity,
+    \item insufficient observations,
+    \item worker-to-worker differences,
+    \item method changes during study,
+    \item unusual operating conditions,
+    \item stopwatch resolution,
+    \item fatigue effects.
+\end{itemize}
+
+Therefore a standard time should be viewed as a defined engineering
+standard, not as an immutable physical constant.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Assumptions in Work Sampling}
+\small
+
+Work sampling relies on:
+
+\begin{itemize}
+    \item representative observations,
+    \item appropriate randomization,
+    \item sufficiently large sample size,
+    \item independent or approximately independent observations,
+    \item clearly defined activity categories.
+\end{itemize}
+
+Poor randomization can create systematic sampling bias.
+
+For example, observing only during morning hours may not represent
+the entire workday.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Assumptions in Control Charts}
+\small
+
+Depending on the chart, assumptions may include:
+
+\begin{itemize}
+    \item observations are appropriately subgrouped,
+    \item measurement system is adequate,
+    \item process conditions are reasonably comparable,
+    \item the selected probability model is suitable,
+    \item sampling frequency is appropriate.
+\end{itemize}
+
+Control limits should be recalculated when the underlying process
+or sampling structure changes materially.
+
+\end{frame}
+
+% ============================================================
+% INTEGRATED MANUFACTURING EXAMPLE
+% ============================================================
+
+\section{Integrated Engineering Example}
+
+\begin{frame}{Integrated Manufacturing Scenario}
+\small
+
+Consider a shaft-manufacturing line.
+
+The process consists of:
+
+\[
+\text{Raw material}
+\rightarrow
+\text{Turning}
+\rightarrow
+\text{Grinding}
+\rightarrow
+\text{Inspection}
+\rightarrow
+\text{Packing}
+\]
+
+Possible engineering questions:
+
+\begin{itemize}
+    \item Is the method efficient?
+    \item What is the standard machining time?
+    \item How much operator idle time occurs?
+    \item Is shaft diameter statistically stable?
+    \item What fraction of shafts are defective?
+    \item Should incoming lots be accepted?
+\end{itemize}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Integrated Method Study}
+\small
+
+The method-study sequence may identify:
+
+\begin{itemize}
+    \item unnecessary material movement,
+    \item repeated inspection,
+    \item poor workstation arrangement,
+    \item excessive operator travel,
+    \item unnecessary handling.
+\end{itemize}
+
+ECRS can then be applied:
+
+\[
+\boxed{
+\text{Eliminate}
+\rightarrow
+\text{Combine}
+\rightarrow
+\text{Rearrange}
+\rightarrow
+\text{Simplify}
+}
+\]
+
+The improved method should be defined before establishing
+the final standard time.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Integrated Time Study}
+\small
+
+Suppose:
+
+\[
+OT=3.20\text{ min}
+\]
+
+and:
+
+\[
+R=105\%.
+\]
+
+Then:
+
+\[
+NT=3.20(1.05)=3.36\text{ min}.
+\]
+
+If allowance is 15\% of normal time:
+
+\[
+ST=3.36(1.15)
+\]
+
+\[
+\boxed{
+ST=3.864\text{ min}
+}
+\]
+
+Thus the production standard is approximately:
+
+\[
+\boxed{
+3.86\text{ min/unit}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Capacity Interpretation}
+\small
+
+If:
+
+\[
+ST=3.864\text{ min/unit},
+\]
+
+then theoretical output per 60-minute hour is:
+
+\[
+Q=
+\frac{60}{3.864}
+\]
+
+\[
+\boxed{
+Q\approx15.52\text{ units/hour}
+}
+\]
+
+This does not automatically mean 15.52 saleable units will be
+produced because actual output depends on:
+
+\begin{itemize}
+    \item downtime,
+    \item quality losses,
+    \item material availability,
+    \item setup,
+    \item maintenance,
+    \item scheduling.
+\end{itemize}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Integrated Quality Monitoring}
+\small
+
+Suppose shaft diameter is measured in rational subgroups.
+
+Use:
+
+\[
+\boxed{\bar X\text{ chart}}
+\]
+
+to monitor process location and:
+
+\[
+\boxed{R\text{ chart}}
+\]
+
+to monitor within-subgroup variation.
+
+If the product is classified as defective/nondefective:
+
+\[
+\boxed{p\text{ chart}}
+\]
+
+can monitor the fraction defective.
+
+Thus several statistical tools may be used simultaneously.
+
+\end{frame}
+
+% ============================================================
+% FORMULA SHEET
+% ============================================================
+
+\section{Formula Sheet}
+
+\begin{frame}{Formula Sheet: Time Study}
+\small
+
+\[
+\boxed{
+OT=\frac{\sum T_i}{n}
+}
+\]
+
+\[
+\boxed{
+NT=OT\left(\frac{R}{100}\right)
+}
+\]
+
+\[
+\boxed{
+ST=NT(1+A)
+}
+\]
+
+when allowance is a fraction of normal time.
+
+\[
+\boxed{
+ST=\frac{NT}{1-A}
+}
+\]
+
+when allowance is a fraction of standard time.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Formula Sheet: Work Sampling}
+\small
+
+\[
+\boxed{
+\hat p=\frac{x}{n}
+}
+\]
+
+\[
+\boxed{
+SE(\hat p)
+=
+\sqrt{
+\frac{\hat p(1-\hat p)}{n}
+}
+}
+\]
+
+\[
+\boxed{
+CI=
+\hat p
+\pm
+z_{\alpha/2}
+SE(\hat p)
+}
+\]
+
+\[
+\boxed{
+n=
+\frac{
+z_{\alpha/2}^{2}pq
+}{
+e^2
+}
+}
+\]
+
+For maximum variance:
+
+\[
+\boxed{
+p=q=0.5
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Formula Sheet: $\bar X$--$R$}
+\small
+
+\[
+\boxed{
+\bar X_i=
+\frac{1}{n}
+\sum X_{ij}
+}
+\]
+
+\[
+\boxed{
+R_i=X_{\max}-X_{\min}
+}
+\]
+
+\[
+\boxed{
+\bar{\bar X}
+=
+\frac{1}{k}
+\sum\bar X_i
+}
+\]
+
+\[
+\boxed{
+\bar R=
+\frac{1}{k}
+\sum R_i
+}
+\]
+
+\[
+\boxed{
+UCL_{\bar X}
+=
+\bar{\bar X}+A_2\bar R
+}
+\]
+
+\[
+\boxed{
+LCL_{\bar X}
+=
+\bar{\bar X}-A_2\bar R
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Formula Sheet: R Chart}
+\small
+
+\[
+\boxed{
+UCL_R=D_4\bar R
+}
+\]
+
+\[
+\boxed{
+CL_R=\bar R
+}
+\]
+
+\[
+\boxed{
+LCL_R=D_3\bar R
+}
+\]
+
+Process standard deviation estimate:
+
+\[
+\boxed{
+\hat\sigma=\frac{\bar R}{d_2}
+}
+\]
+
+The constants:
+
+\[
+A_2,\quad D_3,\quad D_4,\quad d_2
+\]
+
+depend on subgroup size.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Formula Sheet: $p$ Chart}
+\small
+
+\[
+\boxed{
+p_i=\frac{d_i}{n_i}
+}
+\]
+
+\[
+\boxed{
+\bar p=
+\frac{\sum d_i}{\sum n_i}
+}
+\]
+
+For constant \(n\):
+
+\[
+\boxed{
+UCL_p=
+\bar p+
+3\sqrt{
+\frac{\bar p(1-\bar p)}{n}
+}
+}
+\]
+
+\[
+\boxed{
+LCL_p=
+\bar p-
+3\sqrt{
+\frac{\bar p(1-\bar p)}{n}
+}
+}
+\]
+
+with negative \(LCL\) replaced by zero.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Formula Sheet: $c$ Chart}
+\small
+
+\[
+\boxed{
+\bar c=
+\frac{1}{k}\sum c_i
+}
+\]
+
+\[
+\boxed{
+UCL_c=
+\bar c+3\sqrt{\bar c}
+}
+\]
+
+\[
+\boxed{
+CL_c=\bar c
+}
+\]
+
+\[
+\boxed{
+LCL_c=
+\bar c-3\sqrt{\bar c}
+}
+\]
+
+If:
+
+\[
+LCL_c<0,
+\]
+
+use:
+
+\[
+\boxed{
+LCL_c=0.
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Formula Sheet: Acceptance Sampling}
+\small
+
+Binomial probability:
+
+\[
+\boxed{
+P(X=x)
+=
+{n\choose x}
+p^x(1-p)^{n-x}
+}
+\]
+
+Acceptance probability:
+
+\[
+\boxed{
+P_a(p)=
+\sum_{x=0}^{c}
+{n\choose x}
+p^x(1-p)^{n-x}
+}
+\]
+
+Hypergeometric probability:
+
+\[
+\boxed{
+P(X=x)
+=
+\frac{
+{D\choose x}
+{N-D\choose n-x}
+}{
+{N\choose n}
+}
+}
+\]
+
+\end{frame}
+
+% ============================================================
+% COMPARISON TABLES
+% ============================================================
+
+\section{Comparison Tables}
+
+\begin{frame}{Method Study vs Work Measurement}
+\small
+
+\begin{tabularx}{\textwidth}{YYY}
+\toprule
+Feature & Method Study & Work Measurement\\
+\midrule
+Main question & How should work be done? & How long should work take?\\
+Primary focus & Method & Time\\
+Main output & Improved method & Standard time\\
+Typical tools & Charts, ECRS & Stopwatch, sampling\\
+Sequence & Usually before measurement & After method definition\\
+\bottomrule
+\end{tabularx}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Time Study vs Work Sampling}
+\small
+
+\begin{tabularx}{\textwidth}{YYY}
+\toprule
+Feature & Time Study & Work Sampling\\
+\midrule
+Observation & Continuous/repetitive & Random observations\\
+Best suited for & Short repetitive cycles & Irregular activities\\
+Output & Task time & Proportion of time\\
+Equipment & Stopwatch/timer & Sampling schedule\\
+Statistical basis & Direct measurement & Probability sampling\\
+\bottomrule
+\end{tabularx}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Control Charts Comparison}
+\small
+
+\begin{tabularx}{\textwidth}{YYYY}
+\toprule
+Chart & Data & Model & Main purpose\\
+\midrule
+$\bar X$ & Mean & Normal approximation & Location\\
+$R$ & Range & Range distribution & Dispersion\\
+$p$ & Fraction defective & Binomial & Defective fraction\\
+$c$ & Defect count & Poisson & Defect count\\
+\bottomrule
+\end{tabularx}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Important Distinctions}
+\small
+
+\[
+\boxed{
+\text{Defect}\neq\text{Defective}
+}
+\]
+
+\[
+\boxed{
+\text{Control limit}\neq\text{Specification limit}
+}
+\]
+
+\[
+\boxed{
+\text{Normal time}\neq\text{Standard time}
+}
+\]
+
+\[
+\boxed{
+\text{Process control}\neq\text{Acceptance sampling}
+}
+\]
+
+\[
+\boxed{
+\text{Variables data}\neq\text{Attributes data}
+}
+\]
+
+These distinctions are frequently tested in examinations and viva.
+
+\end{frame}
+
+% ============================================================
+% DETAILED CONCEPTUAL QUESTIONS
+% ============================================================
+
+\section{Viva and Examination Questions}
+
+\begin{frame}{Viva Questions: Work Study}
+\small
+
+\begin{enumerate}
+    \item What is work study?
+    \item What are the two main components of work study?
+    \item Why is method study performed before time study?
+    \item What is the SREDIM procedure?
+    \item What is ECRS?
+    \item What is the purpose of an operation process chart?
+    \item What is a flow process chart?
+    \item Why is a two-handed chart useful?
+    \item What information is provided by a man-machine chart?
+\end{enumerate}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Viva Questions: Time Study}
+\small
+
+\begin{enumerate}
+    \item What is work measurement?
+    \item Why is a job divided into elements?
+    \item What is observed time?
+    \item What is normal time?
+    \item Why is performance rating required?
+    \item What does a rating of 100\% mean?
+    \item What happens when rating exceeds 100\%?
+    \item Why are allowances added?
+    \item What is standard time?
+    \item Why can two allowance formulas exist?
+\end{enumerate}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Viva Questions: Work Sampling}
+\small
+
+\begin{enumerate}
+    \item What is work sampling?
+    \item What is the probability model behind work sampling?
+    \item Why is random sampling important?
+    \item What is \(\hat p\)?
+    \item What is the standard error of a proportion?
+    \item How does sample size affect precision?
+    \item Why is \(p=0.5\) conservative for sample-size planning?
+    \item What is a confidence interval?
+\end{enumerate}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Viva Questions: SQC}
+\small
+
+\begin{enumerate}
+    \item What is statistical quality control?
+    \item What is process variation?
+    \item What are common causes?
+    \item What are special causes?
+    \item What is a control chart?
+    \item Why are three-sigma limits commonly used?
+    \item What is the difference between control and specification limits?
+    \item What is rational subgrouping?
+\end{enumerate}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Viva Questions: Control Charts}
+\small
+
+\begin{enumerate}
+    \item What is an $\bar X$ chart?
+    \item What is an \(R\) chart?
+    \item Why are $\bar X$ and \(R\) charts used together?
+    \item What is \(A_2\)?
+    \item What is \(D_3\)?
+    \item What is \(D_4\)?
+    \item What is \(d_2\)?
+    \item When is a \(p\)-chart used?
+    \item When is a \(c\)-chart used?
+\end{enumerate}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Viva Questions: Acceptance Sampling}
+\small
+
+\begin{enumerate}
+    \item What is acceptance sampling?
+    \item What is a single sampling plan?
+    \item What do \(n\) and \(c\) represent?
+    \item What is acceptance probability?
+    \item When is the binomial model appropriate?
+    \item When is the hypergeometric model appropriate?
+    \item What is an OC curve?
+    \item What is AQL?
+    \item What is LTPD?
+    \item What are producer's and consumer's risks?
+\end{enumerate}
+
+\end{frame}
+
+% ============================================================
+% NUMERICAL PRACTICE
+% ============================================================
+
+\section{Numerical Practice}
+
+\begin{frame}{Numerical Problem 1: Normal and Standard Time}
+\small
+
+A job has an observed time of:
+
+\[
+OT=4.5\text{ min}.
+\]
+
+The worker rating is:
+
+\[
+R=110\%.
+\]
+
+The allowance is:
+
+\[
+A=20\%
+\]
+
+of normal time.
+
+Find:
+
+\begin{enumerate}
+    \item Normal time
+    \item Standard time
+\end{enumerate}
+
+\vspace{5pt}
+
+\textbf{Solution:}
+
+\[
+NT=4.5(1.10)=4.95
+\]
+
+\[
+ST=4.95(1.20)=5.94
+\]
+
+\[
+\boxed{
+ST=5.94\text{ min}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Numerical Problem 2: Work Sampling}
+\small
+
+During 800 random observations, a machine was found to be idle
+in 120 observations.
+
+Find:
+
+\begin{enumerate}
+    \item Estimated idle proportion
+    \item Standard error
+    \item Approximate 95\% confidence interval
+\end{enumerate}
+
+\vspace{4pt}
+
+\[
+\hat p=\frac{120}{800}=0.15
+\]
+
+\[
+SE=
+\sqrt{
+\frac{0.15(0.85)}{800}
+}
+\approx0.01263
+\]
+
+Therefore:
+
+\[
+CI=
+0.15\pm1.96(0.01263)
+\]
+
+\[
+\boxed{
+CI\approx(0.1252,\ 0.1748)
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Numerical Problem 3: $\bar X$ Chart}
+\small
+
+Given:
+
+\[
+\bar{\bar X}=50.20
+\]
+
+\[
+\bar R=0.80
+\]
+
+and for subgroup size \(n=5\):
+
+\[
+A_2=0.577.
+\]
+
+Find control limits.
+
+\vspace{4pt}
+
+\[
+UCL=
+50.20+(0.577)(0.80)
+\]
+
+\[
+\boxed{
+UCL=50.6616
+}
+\]
+
+\[
+LCL=
+50.20-(0.577)(0.80)
+\]
+
+\[
+\boxed{
+LCL=49.7384
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Numerical Problem 4: $p$ Chart}
+\small
+
+Suppose:
+
+\[
+\bar p=0.04
+\]
+
+and:
+
+\[
+n=200.
+\]
+
+Then:
+
+\[
+\sigma_p=
+\sqrt{
+\frac{0.04(0.96)}{200}
+}
+\]
+
+\[
+\sigma_p\approx0.01386.
+\]
+
+Hence:
+
+\[
+UCL=0.04+3(0.01386)
+\]
+
+\[
+\boxed{
+UCL\approx0.0816
+}
+\]
+
+and:
+
+\[
+LCL=0.04-3(0.01386)<0.
+\]
+
+Therefore:
+
+\[
+\boxed{
+LCL=0
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Numerical Problem 5: $c$ Chart}
+\small
+
+Suppose:
+
+\[
+\bar c=9.
+\]
+
+Then:
+
+\[
+\sigma_c=\sqrt9=3.
+\]
+
+Therefore:
+
+\[
+UCL=9+3(3)
+\]
+
+\[
+\boxed{
+UCL=18
+}
+\]
+
+and:
+
+\[
+LCL=9-3(3)=0.
+\]
+
+Hence:
+
+\[
+\boxed{
+0\le c\le18
+}
+\]
+
+is the approximate three-sigma control region.
+
+\end{frame}
+
+% ============================================================
+% DEEP CONCEPTUAL INTERPRETATION
+% ============================================================
+
+\section{Physical and Engineering Interpretation}
+
+\begin{frame}{Physical Meaning of Standard Time}
+\small
+
+Standard time is not simply the stopwatch reading.
+
+Conceptually:
+
+\[
+\boxed{
+ST=
+\text{time at standard performance}
++
+\text{appropriate allowances}
+}
+\]
+
+It represents the expected time under defined conditions.
+
+Therefore standard time can support:
+
+\begin{itemize}
+    \item production scheduling,
+    \item labour planning,
+    \item machine loading,
+    \item costing,
+    \item productivity analysis.
+\end{itemize}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Physical Meaning of Control Limits}
+\small
+
+Control limits describe the expected statistical behavior of a
+process under the assumed model.
+
+They are not engineering tolerances.
+
+For example:
+
+\[
+\text{Diameter target}=25.00\text{ mm}
+\]
+
+might have specifications:
+
+\[
+24.95\le D\le25.05\text{ mm}.
+\]
+
+Control limits are instead calculated from observed process
+variation.
+
+\[
+\boxed{
+\text{Specification = requirement}
+}
+\]
+
+\[
+\boxed{
+\text{Control limit = process behavior}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Physical Meaning of Process Capability}
+\small
+
+A stable process can still produce excessive nonconforming units
+if its natural variation is large relative to the specifications.
+
+Conceptually:
+
+\[
+\boxed{
+\text{Stability}
+\neq
+\text{Capability}
+}
+\]
+
+Stability asks:
+
+\[
+\text{Is the process statistically predictable?}
+\]
+
+Capability asks:
+
+\[
+\text{Can the predictable process meet specifications?}
+\]
+
+Both questions are important.
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Why Statistical Thinking Matters}
+\small
+
+Engineering decisions should distinguish:
+
+\[
+\text{signal}
+\]
+
+from:
+
+\[
+\text{noise}.
+\]
+
+A single unusual observation may be:
+
+\begin{itemize}
+    \item a genuine special cause,
+    \item measurement error,
+    \item a recording error,
+    \item a legitimate rare event.
+\end{itemize}
+
+Therefore statistical evidence should trigger investigation,
+not automatic conclusions.
+
+\end{frame}
+
+% ============================================================
+% FINAL SUMMARY
+% ============================================================
+
+\section{Final Summary}
+
+\begin{frame}{Complete Unit--IV Concept Map}
+\small
+
+\[
+\boxed{
+\text{WORK STUDY}
+}
+\]
+
+\[
+\downarrow
+\]
+
+\[
+\boxed{
+\text{METHOD STUDY}
+}
+\quad+\quad
+\boxed{
+\text{WORK MEASUREMENT}
+}
+\]
+
+\vspace{5pt}
+
+Method study:
+
+\[
+\text{Select}\rightarrow\text{Record}\rightarrow\text{Examine}
+\rightarrow\text{Develop}\rightarrow\text{Install}\rightarrow\text{Maintain}
+\]
+
+\vspace{5pt}
+
+Work measurement:
+
+\[
+OT\rightarrow NT\rightarrow ST
+\]
+
+\vspace{5pt}
+
+Quality control:
+
+\[
+\text{Variation}
+\rightarrow
+\text{Control Charts}
+\rightarrow
+\text{Process Investigation}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Unit--IV: Key Equations}
+\small
+
+\[
+\boxed{
+NT=OT\frac{R}{100}
+}
+\]
+
+\[
+\boxed{
+ST=NT(1+A)
+}
+\]
+
+\[
+\boxed{
+\hat p=\frac{x}{n}
+}
+\]
+
+\[
+\boxed{
+n=\frac{z^2pq}{e^2}
+}
+\]
+
+\[
+\boxed{
+UCL_{\bar X}=\bar{\bar X}+A_2\bar R
+}
+\]
+
+\[
+\boxed{
+LCL_{\bar X}=\bar{\bar X}-A_2\bar R
+}
+\]
+
+\[
+\boxed{
+UCL_R=D_4\bar R
+}
+\]
+
+\[
+\boxed{
+UCL_p=\bar p+
+3\sqrt{\frac{\bar p(1-\bar p)}{n}}
+}
+\]
+
+\[
+\boxed{
+UCL_c=\bar c+3\sqrt{\bar c}
+}
+\]
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Final Examination Checklist}
+\small
+
+Before an examination, be able to explain:
+
+\begin{itemize}
+    \item Work study and its objectives.
+    \item Method study and SREDIM.
+    \item ECRS.
+    \item OPC, flow process, two-handed and man-machine charts.
+    \item Work measurement.
+    \item Stopwatch time study.
+    \item Continuous and snapback timing.
+    \item Observed time.
+    \item Performance rating.
+    \item Normal time.
+    \item Allowances.
+    \item Standard time.
+    \item Work sampling.
+    \item Binomial model.
+    \item Confidence interval.
+    \item Sample-size calculation.
+    \item SQC.
+    \item Common and special causes.
+    \item Variables and attributes.
+    \item $\bar X$--$R$ charts.
+    \item $p$ and $c$ charts.
+    \item Acceptance sampling.
+    \item OC curve.
+    \item AQL, LTPD, $\alpha$ and $\beta$.
+\end{itemize}
+
+\end{frame}
+
+% ------------------------------------------------------------
+
+\begin{frame}{Final Conceptual Summary}
+\small
+
+\begin{center}
+
+\Large
+\textbf{Improve the Method}\\[4pt]
+
+\[
+\downarrow
+\]
+
+\textbf{Measure the Work}\\[4pt]
+
+\[
+\downarrow
+\]
+
+\textbf{Establish Normal and Standard Time}\\[4pt]
+
+\[
+\downarrow
+\]
+
+\textbf{Monitor Process Variation}\\[4pt]
+
+\[
+\downarrow
+\]
+
+\textbf{Identify Statistical Signals}\\[4pt]
+
+\[
+\downarrow
+\]
+
+\textbf{Investigate and Improve the Process}
+
+\end{center}
+
+\vspace{5pt}
+
+\[
+\boxed{
+\text{Productivity improvement and quality control are continuous engineering activities}
+}
+\]
+
+\end{frame}
+
+% ============================================================
+% END
+% ============================================================
+
+\begin{frame}[standout]
+\centering
+\Huge
+\textbf{Thank You}
+
+\vspace{8pt}
+
+\Large
+Questions and Discussion
+\end{frame}
+
+\end{document}
