@@ -168,34 +168,26 @@ Sree Chaitanya College of Engineering
     ht=0.38cm,
     dp=0.12cm
   ]{author in head/foot}%
-    
-    \hspace{0.45cm}%
-    
-    % LEFT: AUTHOR
-    \begin{minipage}[c][0.26cm][c]{0.29\paperwidth}%
-      \raggedright
-      \scriptsize
-      \color{white}
-      \insertshortauthor
-    \end{minipage}%
-    
-    % CENTER: TOPIC
-    \begin{minipage}[c][0.26cm][c]{0.40\paperwidth}%
-      \centering
-      \scriptsize
-      \color{white}
-      \textbf{Industrial Maintenance}
-    \end{minipage}%
-    
-    % RIGHT: SLIDE NUMBER
-    \begin{minipage}[c][0.26cm][c]{0.20\paperwidth}%
-      \raggedleft
-      \scriptsize
-      \color{white}
-      \insertframenumber
-      \hspace{0.45cm}
-    \end{minipage}%
-    
+    \hbox to \paperwidth{%
+      % LEFT: AUTHOR
+      \hbox to 0.30\paperwidth{%
+        \hspace{0.40cm}%
+        \scriptsize\color{white}\insertshortauthor
+        \hfil
+      }%
+      % CENTER: TOPIC
+      \hbox to 0.50\paperwidth{%
+        \hfil
+        \scriptsize\color{white}\textbf{Industrial Maintenance}%
+        \hfil
+      }%
+      % RIGHT: SLIDE NUMBER
+      \hbox to 0.20\paperwidth{%
+        \hfil
+        \scriptsize\color{white}\insertframenumber
+        \hspace{0.40cm}%
+      }%
+    }%
   \end{beamercolorbox}%
 }
 
@@ -204,6 +196,8 @@ Sree Chaitanya College of Engineering
 % ============================================================
 % TITLE
 % ============================================================
+
+\begin{document}
 
 \maketitle
 
