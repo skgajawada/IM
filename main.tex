@@ -8,7 +8,7 @@
 
 \usetheme[
     progressbar=frametitle,
-    numbering=counter
+    numbering=none
 ]{metropolis}
 
 % ------------------------------------------------------------
@@ -38,6 +38,11 @@
 % ------------------------------------------------------------
 \usepackage{graphicx}
 \usepackage{microtype}
+\setlength{\abovedisplayskip}{2pt}
+\setlength{\belowdisplayskip}{2pt}
+\setlength{\abovedisplayshortskip}{1pt}
+\setlength{\belowdisplayshortskip}{1pt}
+\setlength{\jot}{1pt}
 %\usepackage{enumitem}
 
 % ------------------------------------------------------------
@@ -63,8 +68,25 @@
 % ------------------------------------------------------------
 \setbeamerfont{frametitle}{size=\large}
 \setbeamerfont{framesubtitle}{size=\normalsize}
-\setbeamerfont{title}{size=\LARGE}
-\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{subtitle}{size=\normalsize}
+
+\makeatletter
+% Compact Metropolis title page (prevents vertical overflow)
+\setbeamertemplate{title page}{%
+  \begin{minipage}[b][\paperheight]{\textwidth}
+    \vfill
+    \ifx\inserttitle\@empty\else\usebeamertemplate*{title}\fi
+    \ifx\insertsubtitle\@empty\else\usebeamertemplate*{subtitle}\fi
+    \usebeamertemplate*{title separator}
+    \ifx\beamer@shortauthor\@empty\else\usebeamertemplate*{author}\fi
+    \ifx\insertdate\@empty\else\usebeamertemplate*{date}\fi
+    \ifx\insertinstitute\@empty\else\usebeamertemplate*{institute}\fi
+    \vfill
+    \vspace*{-4mm}
+  \end{minipage}%
+}
+\makeatother
 
 % ------------------------------------------------------------
 % LIST SPACING
@@ -108,12 +130,11 @@
 % ------------------------------------------------------------
 % TITLE INFORMATION
 % ------------------------------------------------------------
-\title{UNIT--IV: WORK STUDY AND\\
-STATISTICAL QUALITY CONTROL}
+\title{Industrial Maintenance}
 
 \subtitle{
-Detailed Theory, Mathematical Modelling,\\
-Numerical Examples, Interpretation and Applications
+UNIT--IV: WORK STUDY AND\\
+STATISTICAL QUALITY CONTROL
 }
 
 \author{Rachakatla Narmada}
@@ -123,13 +144,62 @@ Assistant Professor\\
 Sree Chaitanya College of Engineering
 }
 
-%\date{}
+\date{}
 
 % ============================================================
 % DOCUMENT
 % ============================================================
 
-\begin{document}
+% ------------------------------------------------------------
+% CUSTOM FOOTER
+% Left: author | Center: topic | Right: slide number
+% Same dark color as header
+% ------------------------------------------------------------
+
+\setbeamercolor{author in head/foot}{
+    fg=white,
+    bg=HeaderDark
+}
+
+\defbeamertemplate{footline}{custom}{%
+  \leavevmode%
+  \begin{beamercolorbox}[
+    wd=\paperwidth,
+    ht=0.38cm,
+    dp=0.12cm
+  ]{author in head/foot}%
+    
+    \hspace{0.45cm}%
+    
+    % LEFT: AUTHOR
+    \begin{minipage}[c][0.26cm][c]{0.29\paperwidth}%
+      \raggedright
+      \scriptsize
+      \color{white}
+      \insertshortauthor
+    \end{minipage}%
+    
+    % CENTER: TOPIC
+    \begin{minipage}[c][0.26cm][c]{0.40\paperwidth}%
+      \centering
+      \scriptsize
+      \color{white}
+      \textbf{Industrial Maintenance}
+    \end{minipage}%
+    
+    % RIGHT: SLIDE NUMBER
+    \begin{minipage}[c][0.26cm][c]{0.20\paperwidth}%
+      \raggedleft
+      \scriptsize
+      \color{white}
+      \insertframenumber
+      \hspace{0.45cm}
+    \end{minipage}%
+    
+  \end{beamercolorbox}%
+}
+
+\setbeamertemplate{footline}[custom]
 
 % ============================================================
 % TITLE
@@ -143,6 +213,11 @@ Sree Chaitanya College of Engineering
 
 \begin{frame}{Unit--IV Roadmap}
 \small
+
+\begin{columns}[T,onlytextwidth]
+
+\column{0.48\textwidth}
+
 \begin{enumerate}
     \item Work Study
     \item Method Study
@@ -154,6 +229,12 @@ Sree Chaitanya College of Engineering
     \item Work Sampling
     \item Statistical Quality Control
     \item Control Charts
+\end{enumerate}
+
+\column{0.48\textwidth}
+
+\begin{enumerate}
+    \setcounter{enumi}{10}
     \item Variables and Attributes Charts
     \item $\bar X$--$R$ Charts
     \item $p$ and $c$ Charts
@@ -164,6 +245,9 @@ Sree Chaitanya College of Engineering
     \item Formula Sheet
     \item Viva Questions
 \end{enumerate}
+
+\end{columns}
+
 \end{frame}
 
 % ============================================================
@@ -172,7 +256,7 @@ Sree Chaitanya College of Engineering
 
 \section{Work Study}
 
-\begin{frame}{What is Work Study?}
+\begin{frame}[shrink=18]{What is Work Study?}
 \small
 
 \textbf{Work study} is a systematic examination of the methods of doing work
@@ -214,7 +298,7 @@ Therefore,
 
 % ------------------------------------------------------------
 
-\begin{frame}{Why is Work Study Required?}
+\begin{frame}[shrink=18]{Why is Work Study Required?}
 \small
 
 Work study is required because manufacturing systems contain:
@@ -244,7 +328,7 @@ The fundamental engineering question is:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Objectives of Work Study}
+\begin{frame}[shrink=18]{Objectives of Work Study}
 \small
 
 \begin{columns}[T]
@@ -295,7 +379,7 @@ The fundamental engineering question is:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Work Study: Basic Procedure}
+\begin{frame}[shrink=18]{Work Study: Basic Procedure}
 \small
 
 A systematic work-study investigation generally follows:
@@ -332,7 +416,7 @@ itself can first be improved.
 
 \section{Method Study}
 
-\begin{frame}{Method Study}
+\begin{frame}[shrink=18]{Method Study}
 \small
 
 \textbf{Method study} is the systematic recording and critical examination
@@ -367,7 +451,7 @@ The aim is not simply to make a worker work faster.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Method Study Procedure}
+\begin{frame}[shrink=18]{Method Study Procedure}
 \small
 
 A commonly used sequence is:
@@ -392,7 +476,7 @@ without critical questioning do not automatically produce improvement.
 
 % ------------------------------------------------------------
 
-\begin{frame}{SREDIM Technique}
+\begin{frame}[shrink=18]{SREDIM Technique}
 \small
 
 \textbf{SREDIM} is a traditional mnemonic for method-study procedure:
@@ -429,7 +513,7 @@ S-R-E-D-I-M
 
 % ------------------------------------------------------------
 
-\begin{frame}{Critical Examination Questions}
+\begin{frame}[shrink=18]{Critical Examination Questions}
 \small
 
 For each activity, ask:
@@ -463,7 +547,7 @@ The goal is to distinguish \textbf{necessary work} from
 
 % ------------------------------------------------------------
 
-\begin{frame}{ECRS Principle}
+\begin{frame}[shrink=18]{ECRS Principle}
 \small
 
 ECRS provides four basic directions for method improvement.
@@ -508,7 +592,7 @@ with reduced travel.
 
 \section{Method Study Charts}
 
-\begin{frame}{Purpose of Method Study Charts}
+\begin{frame}[shrink=18]{Purpose of Method Study Charts}
 \small
 
 Charts convert a physical work process into a structured representation.
@@ -545,7 +629,7 @@ Different charts provide different levels of detail.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Operation Process Chart}
+\begin{frame}[shrink=18]{Operation Process Chart}
 \small
 
 An \textbf{Operation Process Chart (OPC)} records the principal
@@ -582,48 +666,29 @@ delays and storage as a flow process chart.
 
 \begin{frame}{Flow Process Chart}
 \small
-
-A \textbf{Flow Process Chart} gives a more detailed representation.
-
-It normally identifies:
-
+A \textbf{Flow Process Chart} gives a detailed representation of the process.
+It normally identifies \textbf{operation, inspection, transport, delay,} and \textbf{storage}.
+\vspace{2pt}
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\textbf{Typical analysis}
 \begin{itemize}
-    \item Operation
-    \item Inspection
-    \item Transport
-    \item Delay
-    \item Storage
+\item How many operations?
+\item How much distance is travelled?
 \end{itemize}
-
-\vspace{4pt}
-
-A typical analysis asks:
-
-\[
-\text{How many operations?}
-\]
-
-\[
-\text{How much distance is travelled?}
-\]
-
-\[
-\text{How much waiting occurs?}
-\]
-
-\[
-\text{How many storage points exist?}
-\]
-
-\vspace{4pt}
-
+\column{0.48\textwidth}
+\begin{itemize}
+\item How much waiting occurs?
+\item How many storage points exist?
+\end{itemize}
+\end{columns}
+\vspace{3pt}
 It is particularly useful for material handling and layout improvement.
-
 \end{frame}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Two-Handed Process Chart}
+\begin{frame}[shrink=18]{Two-Handed Process Chart}
 \small
 
 The two-handed process chart records the activities of:
@@ -657,7 +722,7 @@ while avoiding unnecessary motion.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Man--Machine Chart}
+\begin{frame}[shrink=18]{Man--Machine Chart}
 \small
 
 A \textbf{Man--Machine Chart} represents the utilization of a worker
@@ -693,7 +758,7 @@ may provide an opportunity for another task.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Comparison of Method Study Charts}
+\begin{frame}[shrink=18]{Comparison of Method Study Charts}
 \small
 
 \begin{tabularx}{\textwidth}{YYYY}
@@ -721,7 +786,7 @@ Choose the chart according to the question being investigated.
 
 \section{Work Measurement}
 
-\begin{frame}{What is Work Measurement?}
+\begin{frame}[shrink=18]{What is Work Measurement?}
 \small
 
 \textbf{Work measurement} is the application of techniques designed
@@ -752,7 +817,7 @@ Standard time is useful for:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Major Work Measurement Techniques}
+\begin{frame}[shrink=18]{Major Work Measurement Techniques}
 \small
 
 Important techniques include:
@@ -776,7 +841,7 @@ work sampling can be more practical.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Time Study: Basic Concept}
+\begin{frame}[shrink=18]{Time Study: Basic Concept}
 \small
 
 Time study determines how long a task should take under specified
@@ -814,7 +879,7 @@ The final objective is:
 
 \section{Stopwatch Time Study}
 
-\begin{frame}{Stopwatch Time Study}
+\begin{frame}[shrink=18]{Stopwatch Time Study}
 \small
 
 Stopwatch time study is a direct work-measurement technique.
@@ -837,7 +902,7 @@ the time associated with individual elements or complete cycles.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Why Divide a Job into Elements?}
+\begin{frame}[shrink=18]{Why Divide a Job into Elements?}
 \small
 
 A complete job may contain several distinct activities.
@@ -878,7 +943,7 @@ T_{\text{cycle}}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Continuous Timing}
+\begin{frame}[shrink=18]{Continuous Timing}
 \small
 
 In \textbf{continuous timing}, the stopwatch runs continuously.
@@ -919,7 +984,7 @@ with \(C_0=0\).
 
 % ------------------------------------------------------------
 
-\begin{frame}{Snapback / Flyback Timing}
+\begin{frame}[shrink=18]{Snapback / Flyback Timing}
 \small
 
 In snapback timing, the stopwatch is reset after each element.
@@ -946,7 +1011,7 @@ Limitations:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Observed Time}
+\begin{frame}[shrink=18]{Observed Time}
 \small
 
 Suppose an element is observed for \(n\) cycles:
@@ -990,7 +1055,7 @@ then:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Abnormal Observations}
+\begin{frame}[shrink=18]{Abnormal Observations}
 \small
 
 Not every observed value should automatically be treated as normal.
@@ -1026,7 +1091,7 @@ an observation should be excluded.
 
 \section{Performance Rating}
 
-\begin{frame}{Why is Performance Rating Needed?}
+\begin{frame}[shrink=18]{Why is Performance Rating Needed?}
 \small
 
 Two workers may perform the same task at different observed speeds.
@@ -1060,7 +1125,7 @@ OT\left(\frac{R}{100}\right)
 
 % ------------------------------------------------------------
 
-\begin{frame}{Physical Meaning of Rating}
+\begin{frame}[shrink=18]{Physical Meaning of Rating}
 \small
 
 Consider:
@@ -1104,7 +1169,7 @@ than the observed time.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Rating Less Than 100\%}
+\begin{frame}[shrink=18]{Rating Less Than 100\%}
 \small
 
 Suppose:
@@ -1144,7 +1209,7 @@ observed time.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Rating Methods}
+\begin{frame}[shrink=18]{Rating Methods}
 \small
 
 Common approaches include:
@@ -1179,7 +1244,7 @@ Therefore:
 
 \section{Normal Time}
 
-\begin{frame}{Normal Time}
+\begin{frame}[shrink=18]{Normal Time}
 \small
 
 The \textbf{normal time} is the time required to perform the task
@@ -1219,7 +1284,7 @@ NT \rightarrow \text{time normalized to reference performance}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Numerical Example: Normal Time}
+\begin{frame}[shrink=18]{Numerical Example: Normal Time}
 \small
 
 A worker completes an element in an average observed time of:
@@ -1267,7 +1332,7 @@ This is the time corresponding to the reference performance level.
 
 \section{Allowances and Standard Time}
 
-\begin{frame}{Why are Allowances Required?}
+\begin{frame}[shrink=18]{Why are Allowances Required?}
 \small
 
 A worker cannot continuously perform productive work for the entire
@@ -1298,7 +1363,7 @@ for a positive allowance.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Types of Allowances}
+\begin{frame}[shrink=18]{Types of Allowances}
 \small
 
 Important categories include:
@@ -1330,7 +1395,7 @@ The exact allowance depends on:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Standard Time: Allowance Convention 1}
+\begin{frame}[shrink=18]{Standard Time: Allowance Convention 1}
 \small
 
 If allowance is expressed as a fraction of normal time:
@@ -1369,7 +1434,7 @@ ST=11.5\text{ min}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Standard Time: Allowance Convention 2}
+\begin{frame}[shrink=18]{Standard Time: Allowance Convention 2}
 \small
 
 Sometimes the allowance is defined as a fraction of the
@@ -1416,7 +1481,7 @@ ST=11.765\text{ min}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Why Two Allowance Formulas Exist}
+\begin{frame}[shrink=18]{Why Two Allowance Formulas Exist}
 \small
 
 The two equations:
@@ -1453,57 +1518,17 @@ Never apply an allowance formula without checking its definition.
 
 \begin{frame}{Complete Time Study Calculation}
 \small
-
-Suppose:
-
-\[
-OT=2.0\text{ min}
-\]
-
-\[
-R=110\%
-\]
-
-\[
-A=15\%
-\]
-
-Using the first convention:
-
-\[
-NT
-=
-2.0(1.10)
-=
-2.20\text{ min}
-\]
-
-Then:
-
-\[
-ST
-=
-2.20(1.15)
-\]
-
-\[
-\boxed{
-ST=2.53\text{ min}
-}
-\]
-
-Thus:
-
-\[
-\boxed{
-OT\rightarrow NT\rightarrow ST
-}
-\]
-
-\[
-2.00\rightarrow2.20\rightarrow2.53\text{ min}
-\]
-
+Suppose $OT=2.0\,\mathrm{min}$, $R=110\%$, and $A=15\%$ (allowance as a fraction of normal time).
+\vspace{2pt}
+\begin{align*}
+NT&=OT\left(\frac{R}{100}\right)=2.0(1.10)=2.20\,\mathrm{min},\\
+ST&=NT(1+A)=2.20(1.15)=2.53\,\mathrm{min}.
+\end{align*}
+\begin{center}
+\boxed{OT\;\rightarrow\;NT\;\rightarrow\;ST}
+\qquad
+\boxed{2.00\;\rightarrow\;2.20\;\rightarrow\;2.53\ \mathrm{min}}
+\end{center}
 \end{frame}
 
 % ============================================================
@@ -1512,7 +1537,7 @@ OT\rightarrow NT\rightarrow ST
 
 \section{Work Sampling}
 
-\begin{frame}{What is Work Sampling?}
+\begin{frame}[shrink=18]{What is Work Sampling?}
 \small
 
 \textbf{Work sampling} estimates the proportion of time spent on
@@ -1540,7 +1565,7 @@ where \(\hat p\) estimates the true proportion \(p\).
 
 % ------------------------------------------------------------
 
-\begin{frame}{When is Work Sampling Useful?}
+\begin{frame}[shrink=18]{When is Work Sampling Useful?}
 \small
 
 Work sampling is especially useful when:
@@ -1570,52 +1595,21 @@ Examples:
 
 \begin{frame}{Probability Model for Work Sampling}
 \small
-
-Each observation can be considered as a Bernoulli trial:
-
+Each observation is a Bernoulli trial:
 \[
-X=
-\begin{cases}
-1,&\text{activity is observed}\\
-0,&\text{activity is not observed}
-\end{cases}
+X=\begin{cases}1,&\text{activity is observed}\\0,&\text{activity is not observed}\end{cases}
 \]
-
-with:
-
-\[
-P(X=1)=p
-\]
-
-and
-
-\[
-P(X=0)=1-p=q.
-\]
-
-For \(n\) independent observations:
-
-\[
-X\sim\mathrm{Binomial}(n,p).
-\]
-
-Therefore:
-
-\[
-E(X)=np
-\]
-
-and
-
-\[
-Var(X)=np(1-p).
-\]
-
+\begin{align*}
+P(X=1)&=p, & P(X=0)&=1-p=q,\\
+X&\sim\mathrm{Binomial}(n,p),\\
+E(X)&=np, & Var(X)&=np(1-p).
+\end{align*}
+The model assumes independent observations with a constant activity probability $p$.
 \end{frame}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Estimator of Activity Proportion}
+\begin{frame}[shrink=18]{Estimator of Activity Proportion}
 \small
 
 If \(x\) observations correspond to the activity:
@@ -1660,7 +1654,7 @@ of observed time corresponds to the activity.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Variance and Standard Error}
+\begin{frame}[shrink=18]{Variance and Standard Error}
 \small
 
 For the sample proportion:
@@ -1701,7 +1695,7 @@ Thus increasing \(n\) reduces uncertainty.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Confidence Interval for Work Sampling}
+\begin{frame}[shrink=18]{Confidence Interval for Work Sampling}
 \small
 
 For sufficiently large sample size, an approximate confidence interval is:
@@ -1742,7 +1736,7 @@ CI_{95\%}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Sample Size for Work Sampling}
+\begin{frame}[shrink=18]{Sample Size for Work Sampling}
 \small
 
 If the desired half-width of error is \(e\):
@@ -1796,108 +1790,32 @@ is maximum at \(p=0.5\).
 
 \begin{frame}{Numerical Example: Sample Size}
 \small
-
-Find \(n\) for:
-
+Find $n$ for 95\% confidence, error $e=0.05$, assuming $p=0.50$.
 \[
-95\%\text{ confidence}
+\begin{aligned}
+n&=\frac{(1.96)^2(0.5)(0.5)}{(0.05)^2}\\
+ &=\frac{3.8416(0.25)}{0.0025}=384.16.
+\end{aligned}
 \]
-
-\[
-e=0.05
-\]
-
-and assume:
-
-\[
-p=0.50.
-\]
-
-Then:
-
-\[
-n=
-\frac{(1.96)^2(0.5)(0.5)}
-{(0.05)^2}
-\]
-
-\[
-n=
-\frac{3.8416(0.25)}
-{0.0025}
-\]
-
-\[
-\boxed{
-n\approx384.16
-}
-\]
-
-Therefore:
-
-\[
-\boxed{
-n=385\text{ observations}
-}
-\]
-
+\begin{center}\boxed{n=385\ \text{observations}}\end{center}
 after rounding upward.
-
 \end{frame}
 
 % ------------------------------------------------------------
 
 \begin{frame}{Work Sampling: Numerical Example}
 \small
-
-Suppose:
-
-\[
-n=500
-\]
-
-random observations are taken and the worker is found to be idle in:
-
-\[
-x=75
-\]
-
-observations.
-
-Then:
-
-\[
-\hat p=\frac{75}{500}=0.15.
-\]
-
-Therefore:
-
-\[
-\boxed{
-15\%
-}
-\]
-
-of observations indicate idle time.
-
-For 95\% confidence:
-
-\[
-SE=
-\sqrt{
-\frac{0.15(0.85)}{500}
-}
-\]
-
-\[
-SE\approx0.01597.
-\]
-
+Suppose $n=500$ random observations are taken and the worker is idle in $x=75$ observations.
+\begin{align*}
+\hat p&=\frac{75}{500}=0.15=15\%,\\
+SE&=\sqrt{\frac{0.15(0.85)}{500}}\approx0.01597.
+\end{align*}
+Thus approximately 15\% of observations indicate idle time.
 \end{frame}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Interpretation of Work Sampling Result}
+\begin{frame}[shrink=18]{Interpretation of Work Sampling Result}
 \small
 
 For the previous example:
@@ -1939,7 +1857,7 @@ the true idle proportion is estimated within this interval.
 
 \section{Statistical Quality Control}
 
-\begin{frame}{What is Statistical Quality Control?}
+\begin{frame}[shrink=18]{What is Statistical Quality Control?}
 \small
 
 \textbf{Statistical Quality Control (SQC)} uses statistical methods
@@ -1973,7 +1891,7 @@ from:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Why Does Variation Occur?}
+\begin{frame}[shrink=18]{Why Does Variation Occur?}
 \small
 
 Sources of variation may include:
@@ -2004,7 +1922,7 @@ The key question is:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Common Causes}
+\begin{frame}[shrink=18]{Common Causes}
 \small
 
 \textbf{Common causes} are sources of variation inherent in the
@@ -2031,7 +1949,7 @@ A change in common-cause variation generally requires a
 
 % ------------------------------------------------------------
 
-\begin{frame}{Special Causes}
+\begin{frame}[shrink=18]{Special Causes}
 \small
 
 \textbf{Special causes} are unusual sources of variation that are
@@ -2055,7 +1973,7 @@ that such causes may be present.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Control Limits vs Specification Limits}
+\begin{frame}[shrink=18]{Control Limits vs Specification Limits}
 \small
 
 These concepts must not be confused.
@@ -2089,7 +2007,7 @@ A process can be:
 
 \section{Variables and Attributes}
 
-\begin{frame}{Variables Data}
+\begin{frame}[shrink=18]{Variables Data}
 \small
 
 Variables data are quantitative measurements.
@@ -2119,7 +2037,7 @@ Variables charts generally use more information per observation.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Attributes Data}
+\begin{frame}[shrink=18]{Attributes Data}
 \small
 
 Attributes data classify observations.
@@ -2155,7 +2073,7 @@ These lead to different control charts.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Variables vs Attributes}
+\begin{frame}[shrink=18]{Variables vs Attributes}
 \small
 
 \begin{tabularx}{\textwidth}{YYY}
@@ -2178,7 +2096,7 @@ Information & Detailed measurement & Classification/count\\
 
 \section{Shewhart Control Charts}
 
-\begin{frame}{Basic Structure of a Control Chart}
+\begin{frame}[shrink=18]{Basic Structure of a Control Chart}
 \small
 
 A Shewhart chart contains:
@@ -2215,7 +2133,7 @@ approximately.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Why Three Sigma?}
+\begin{frame}[shrink=18]{Why Three Sigma?}
 \small
 
 For a normal distribution:
@@ -2245,7 +2163,7 @@ This provides a practical basis for Shewhart control limits.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Interpretation of a Control Chart}
+\begin{frame}[shrink=18]{Interpretation of a Control Chart}
 \small
 
 A process may show evidence of unusual behavior when observations
@@ -2277,7 +2195,7 @@ A control chart does not automatically identify the physical cause.
 
 \section{$\bar X$--$R$ Charts}
 
-\begin{frame}{$\bar X$--$R$ Control Charts}
+\begin{frame}[shrink=18]{$\bar X$--$R$ Control Charts}
 \small
 
 For measurable quality characteristics with rational subgroups,
@@ -2315,7 +2233,7 @@ R_i=X_{\max}-X_{\min}.
 
 % ------------------------------------------------------------
 
-\begin{frame}{R Chart}
+\begin{frame}[shrink=18]{R Chart}
 \small
 
 For each subgroup:
@@ -2362,7 +2280,7 @@ The constants depend on subgroup size.
 
 % ------------------------------------------------------------
 
-\begin{frame}{$\bar X$ Chart}
+\begin{frame}[shrink=18]{$\bar X$ Chart}
 \small
 
 Calculate the average of subgroup means:
@@ -2412,7 +2330,7 @@ The constant \(A_2\) depends on subgroup size.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Why Rational Subgroups?}
+\begin{frame}[shrink=18]{Why Rational Subgroups?}
 \small
 
 A rational subgroup should contain observations collected under
@@ -2434,7 +2352,7 @@ Poor subgroup construction can hide important process behavior.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Important $\bar X$--$R$ Constants}
+\begin{frame}[shrink=18]{Important $\bar X$--$R$ Constants}
 \small
 
 Typical constants include:
@@ -2458,7 +2376,7 @@ range and process standard deviation.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Estimating Process Standard Deviation}
+\begin{frame}[shrink=18]{Estimating Process Standard Deviation}
 \small
 
 For a range-based estimate:
@@ -2482,7 +2400,7 @@ process dispersion.
 
 % ------------------------------------------------------------
 
-\begin{frame}{$\bar X$--$R$: Numerical Example}
+\begin{frame}[shrink=18]{$\bar X$--$R$: Numerical Example}
 \small
 
 Suppose five subgroups of size four have:
@@ -2525,7 +2443,7 @@ and:
 
 % ------------------------------------------------------------
 
-\begin{frame}{$\bar X$--$R$: Control Limits}
+\begin{frame}[shrink=18]{$\bar X$--$R$: Control Limits}
 \small
 
 For \(n=4\):
@@ -2574,7 +2492,7 @@ LCL_{\bar X}=9.979
 
 % ------------------------------------------------------------
 
-\begin{frame}{R Chart: Numerical Calculation}
+\begin{frame}[shrink=18]{R Chart: Numerical Calculation}
 \small
 
 Using:
@@ -2625,7 +2543,7 @@ represents the approximate control region for the range chart.
 
 \section{Defects and Defectives}
 
-\begin{frame}{Defect vs Defective}
+\begin{frame}[shrink=18]{Defect vs Defective}
 \small
 
 A \textbf{defect} is a specific nonconformity.
@@ -2661,7 +2579,7 @@ but potentially only:
 
 \section{$p$ Chart}
 
-\begin{frame}{$p$ Control Chart}
+\begin{frame}[shrink=18]{$p$ Control Chart}
 \small
 
 The \(p\)-chart monitors the fraction or proportion of defective
@@ -2693,7 +2611,7 @@ D_i\sim\mathrm{Binomial}(n_i,p).
 
 % ------------------------------------------------------------
 
-\begin{frame}{Mean Fraction Defective}
+\begin{frame}[shrink=18]{Mean Fraction Defective}
 \small
 
 For equal or varying sample sizes, an estimate of the overall
@@ -2722,7 +2640,7 @@ sample proportions.
 
 % ------------------------------------------------------------
 
-\begin{frame}{$p$ Chart Control Limits}
+\begin{frame}[shrink=18]{$p$ Chart Control Limits}
 \small
 
 For sample size \(n\):
@@ -2772,103 +2690,32 @@ If \(LCL_p<0\), it is set to zero.
 
 \begin{frame}{$p$ Chart: Numerical Example}
 \small
-
-Suppose:
-
+Suppose $n=100$ units are inspected in each sample, with defectives $8,5,7,10,6$.
 \[
-n=100
+\sum d_i=36,\qquad \sum n_i=5(100)=500.
 \]
-
-units are inspected in each sample.
-
-Observed defectives:
-
-\[
-8,\ 5,\ 7,\ 10,\ 6.
-\]
-
-Total defectives:
-
-\[
-\sum d_i=36.
-\]
-
-Total inspected:
-
-\[
-5(100)=500.
-\]
-
 Therefore:
-
 \[
-\bar p=\frac{36}{500}=0.072.
+\boxed{\bar p=\frac{36}{500}=0.072=7.2\%}
 \]
-
-\[
-\boxed{
-\bar p=7.2\%
-}
-\]
-
 \end{frame}
 
 % ------------------------------------------------------------
 
 \begin{frame}{$p$ Chart: Control Limits}
 \small
-
-For:
-
-\[
-\bar p=0.072,\qquad n=100,
-\]
-
-the standard deviation is:
-
-\[
-\sigma_p
-=
-\sqrt{
-\frac{0.072(0.928)}{100}
-}
-\]
-
-\[
-\sigma_p\approx0.02585.
-\]
-
-Therefore:
-
-\[
-UCL=0.072+3(0.02585)
-\]
-
-\[
-\boxed{
-UCL\approx0.1496
-}
-\]
-
-and:
-
-\[
-LCL=0.072-3(0.02585)<0.
-\]
-
-Hence:
-
-\[
-\boxed{
-LCL=0
-}
-\]
-
+For $\bar p=0.072$ and $n=100$:
+\begin{align*}
+\sigma_p&=\sqrt{\frac{0.072(0.928)}{100}}\approx0.02585,\\
+UCL&=0.072+3(0.02585)\approx0.1496,\\
+LCL&=0.072-3(0.02585)<0\;\Rightarrow\;LCL=0.
+\end{align*}
+\boxed{UCL\approx0.1496,\qquad LCL=0}
 \end{frame}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Unequal Sample Sizes in a $p$ Chart}
+\begin{frame}[shrink=18]{Unequal Sample Sizes in a $p$ Chart}
 \small
 
 If sample size varies:
@@ -2913,7 +2760,7 @@ Thus the control limits vary with sample size.
 
 \section{$c$ Chart}
 
-\begin{frame}{$c$ Control Chart}
+\begin{frame}[shrink=18]{$c$ Control Chart}
 \small
 
 The \(c\)-chart monitors the number of defects per inspection unit
@@ -2949,7 +2796,7 @@ Therefore:
 
 % ------------------------------------------------------------
 
-\begin{frame}{$c$ Chart Control Limits}
+\begin{frame}[shrink=18]{$c$ Chart Control Limits}
 \small
 
 If the average number of defects is:
@@ -2991,7 +2838,7 @@ LCL_c=0
 
 % ------------------------------------------------------------
 
-\begin{frame}{$c$ Chart: Numerical Example}
+\begin{frame}[shrink=18]{$c$ Chart: Numerical Example}
 \small
 
 Suppose the observed defect counts are:
@@ -3035,7 +2882,7 @@ UCL\approx13.35
 
 % ------------------------------------------------------------
 
-\begin{frame}{$p$ Chart vs $c$ Chart}
+\begin{frame}[shrink=18]{$p$ Chart vs $c$ Chart}
 \small
 
 \begin{tabularx}{\textwidth}{YYY}
@@ -3062,7 +2909,7 @@ The choice depends on what is being counted.
 
 \section{Acceptance Sampling}
 
-\begin{frame}{What is Acceptance Sampling?}
+\begin{frame}[shrink=18]{What is Acceptance Sampling?}
 \small
 
 Acceptance sampling is a procedure in which a sample is taken
@@ -3091,7 +2938,7 @@ It is different from process control.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Why Use Acceptance Sampling?}
+\begin{frame}[shrink=18]{Why Use Acceptance Sampling?}
 \small
 
 100\% inspection may be undesirable when:
@@ -3111,7 +2958,7 @@ is not observed.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Single Sampling Plan}
+\begin{frame}[shrink=18]{Single Sampling Plan}
 \small
 
 A single sampling plan is defined by:
@@ -3142,7 +2989,7 @@ Procedure:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Binomial Model for Acceptance Sampling}
+\begin{frame}[shrink=18]{Binomial Model for Acceptance Sampling}
 \small
 
 For a large lot or independent sampling approximation:
@@ -3188,54 +3035,17 @@ p^x(1-p)^{n-x}
 
 \begin{frame}{Acceptance Probability Example}
 \small
-
-Consider:
-
-\[
-n=20,\qquad c=1.
-\]
-
-If:
-
-\[
-p=0.05,
-\]
-
-the lot is accepted when:
-
-\[
-X=0
-\]
-
-or:
-
-\[
-X=1.
-\]
-
-Thus:
-
-\[
-P_a=P(X=0)+P(X=1).
-\]
-
-For the binomial distribution:
-
-\[
-P(X=0)=(0.95)^{20}
-\]
-
-and:
-
-\[
-P(X=1)=20(0.05)(0.95)^{19}.
-\]
-
+Consider $n=20$, $c=1$, and $p=0.05$. The lot is accepted when $X=0$ or $X=1$.
+\begin{align*}
+P_a&=P(X=0)+P(X=1)\\
+&=(0.95)^{20}+20(0.05)(0.95)^{19}.
+\end{align*}
+For the binomial model, this is the probability that the sample contains no more than one defective unit.
 \end{frame}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Numerical Acceptance Probability}
+\begin{frame}[shrink=18]{Numerical Acceptance Probability}
 \small
 
 For:
@@ -3277,7 +3087,7 @@ under this model.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Hypergeometric Model}
+\begin{frame}[shrink=18]{Hypergeometric Model}
 \small
 
 For sampling without replacement from a finite lot, the
@@ -3317,7 +3127,7 @@ This accounts explicitly for finite-population sampling.
 
 \section{Double Sampling}
 
-\begin{frame}{Double Sampling Plan}
+\begin{frame}[shrink=18]{Double Sampling Plan}
 \small
 
 A double sampling plan allows a second sample when the first
@@ -3344,7 +3154,7 @@ are clearly good or clearly bad.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Conceptual Double Sampling Example}
+\begin{frame}[shrink=18]{Conceptual Double Sampling Example}
 \small
 
 Suppose the first sample contains:
@@ -3383,7 +3193,7 @@ The exact plan is determined by the specified sampling standard.
 
 \section{Operating Characteristic Curves}
 
-\begin{frame}{Operating Characteristic Curve}
+\begin{frame}[shrink=18]{Operating Characteristic Curve}
 \small
 
 The \textbf{Operating Characteristic (OC) curve} shows:
@@ -3416,7 +3226,7 @@ quality levels.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Shape of an OC Curve}
+\begin{frame}[shrink=18]{Shape of an OC Curve}
 \small
 
 A typical OC curve has:
@@ -3452,7 +3262,7 @@ for a conventional single sampling plan.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Effect of Acceptance Number \(c\)}
+\begin{frame}[shrink=18]{Effect of Acceptance Number \(c\)}
 \small
 
 For fixed \(n\):
@@ -3475,7 +3285,7 @@ Therefore changing \(c\) directly changes the OC curve.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Effect of Sample Size \(n\)}
+\begin{frame}[shrink=18]{Effect of Sample Size \(n\)}
 \small
 
 For a fixed acceptance rule, increasing sample size generally
@@ -3505,7 +3315,7 @@ and inspection effort.
 
 \section{AQL, LTPD and Risks}
 
-\begin{frame}{Acceptable Quality Level}
+\begin{frame}[shrink=18]{Acceptable Quality Level}
 \small
 
 The \textbf{AQL} is a specified quality level used in sampling-plan
@@ -3528,7 +3338,7 @@ Instead, it is a parameter within a statistical sampling system.
 
 % ------------------------------------------------------------
 
-\begin{frame}{LTPD / RQL}
+\begin{frame}[shrink=18]{LTPD / RQL}
 \small
 
 The \textbf{Lot Tolerance Percent Defective (LTPD)} or related
@@ -3558,7 +3368,7 @@ Exact definitions depend on the sampling standard being used.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Producer's Risk \(\alpha\)}
+\begin{frame}[shrink=18]{Producer's Risk \(\alpha\)}
 \small
 
 Producer's risk is the probability of rejecting a lot considered
@@ -3594,7 +3404,7 @@ at the specified acceptable-quality point.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Consumer's Risk \(\beta\)}
+\begin{frame}[shrink=18]{Consumer's Risk \(\beta\)}
 \small
 
 Consumer's risk is the probability of accepting a lot associated
@@ -3625,7 +3435,7 @@ according to the specified requirements.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Producer vs Consumer Risk}
+\begin{frame}[shrink=18]{Producer vs Consumer Risk}
 \small
 
 \begin{tabularx}{\textwidth}{YYY}
@@ -3651,7 +3461,7 @@ Both risks exist because only a sample is inspected.
 
 \section{Control Charts vs Acceptance Sampling}
 
-\begin{frame}{Process Control vs Lot Acceptance}
+\begin{frame}[shrink=18]{Process Control vs Lot Acceptance}
 \small
 
 \begin{tabularx}{\textwidth}{YYY}
@@ -3675,7 +3485,7 @@ Primary focus & Process variation & Lot quality\\
 
 \section{Assumptions and Limitations}
 
-\begin{frame}{Assumptions in Time Study}
+\begin{frame}[shrink=18]{Assumptions in Time Study}
 \small
 
 Typical assumptions include:
@@ -3699,7 +3509,7 @@ not represent the intended operating condition.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Limitations of Time Study}
+\begin{frame}[shrink=18]{Limitations of Time Study}
 \small
 
 Potential limitations:
@@ -3722,7 +3532,7 @@ standard, not as an immutable physical constant.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Assumptions in Work Sampling}
+\begin{frame}[shrink=18]{Assumptions in Work Sampling}
 \small
 
 Work sampling relies on:
@@ -3744,7 +3554,7 @@ the entire workday.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Assumptions in Control Charts}
+\begin{frame}[shrink=18]{Assumptions in Control Charts}
 \small
 
 Depending on the chart, assumptions may include:
@@ -3768,7 +3578,7 @@ or sampling structure changes materially.
 
 \section{Integrated Engineering Example}
 
-\begin{frame}{Integrated Manufacturing Scenario}
+\begin{frame}[shrink=18]{Integrated Manufacturing Scenario}
 \small
 
 Consider a shaft-manufacturing line.
@@ -3802,7 +3612,7 @@ Possible engineering questions:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Integrated Method Study}
+\begin{frame}[shrink=18]{Integrated Method Study}
 \small
 
 The method-study sequence may identify:
@@ -3836,7 +3646,7 @@ the final standard time.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Integrated Time Study}
+\begin{frame}[shrink=18]{Integrated Time Study}
 \small
 
 Suppose:
@@ -3881,7 +3691,7 @@ Thus the production standard is approximately:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Capacity Interpretation}
+\begin{frame}[shrink=18]{Capacity Interpretation}
 \small
 
 If:
@@ -3919,7 +3729,7 @@ produced because actual output depends on:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Integrated Quality Monitoring}
+\begin{frame}[shrink=18]{Integrated Quality Monitoring}
 \small
 
 Suppose shaft diameter is measured in rational subgroups.
@@ -3956,7 +3766,7 @@ Thus several statistical tools may be used simultaneously.
 
 \section{Formula Sheet}
 
-\begin{frame}{Formula Sheet: Time Study}
+\begin{frame}[shrink=18]{Formula Sheet: Time Study}
 \small
 
 \[
@@ -3991,7 +3801,7 @@ when allowance is a fraction of standard time.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Formula Sheet: Work Sampling}
+\begin{frame}[shrink=18]{Formula Sheet: Work Sampling}
 \small
 
 \[
@@ -4043,7 +3853,7 @@ p=q=0.5
 
 % ------------------------------------------------------------
 
-\begin{frame}{Formula Sheet: $\bar X$--$R$}
+\begin{frame}[shrink=18]{Formula Sheet: $\bar X$--$R$}
 \small
 
 \[
@@ -4097,7 +3907,7 @@ LCL_{\bar X}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Formula Sheet: R Chart}
+\begin{frame}[shrink=18]{Formula Sheet: R Chart}
 \small
 
 \[
@@ -4138,7 +3948,7 @@ depend on subgroup size.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Formula Sheet: $p$ Chart}
+\begin{frame}[shrink=18]{Formula Sheet: $p$ Chart}
 \small
 
 \[
@@ -4182,7 +3992,7 @@ with negative \(LCL\) replaced by zero.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Formula Sheet: $c$ Chart}
+\begin{frame}[shrink=18]{Formula Sheet: $c$ Chart}
 \small
 
 \[
@@ -4230,7 +4040,7 @@ LCL_c=0.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Formula Sheet: Acceptance Sampling}
+\begin{frame}[shrink=18]{Formula Sheet: Acceptance Sampling}
 \small
 
 Binomial probability:
@@ -4278,7 +4088,7 @@ P(X=x)
 
 \section{Comparison Tables}
 
-\begin{frame}{Method Study vs Work Measurement}
+\begin{frame}[shrink=18]{Method Study vs Work Measurement}
 \small
 
 \begin{tabularx}{\textwidth}{YYY}
@@ -4297,7 +4107,7 @@ Sequence & Usually before measurement & After method definition\\
 
 % ------------------------------------------------------------
 
-\begin{frame}{Time Study vs Work Sampling}
+\begin{frame}[shrink=18]{Time Study vs Work Sampling}
 \small
 
 \begin{tabularx}{\textwidth}{YYY}
@@ -4316,7 +4126,7 @@ Statistical basis & Direct measurement & Probability sampling\\
 
 % ------------------------------------------------------------
 
-\begin{frame}{Control Charts Comparison}
+\begin{frame}[shrink=18]{Control Charts Comparison}
 \small
 
 \begin{tabularx}{\textwidth}{YYYY}
@@ -4334,7 +4144,7 @@ $c$ & Defect count & Poisson & Defect count\\
 
 % ------------------------------------------------------------
 
-\begin{frame}{Important Distinctions}
+\begin{frame}[shrink=18]{Important Distinctions}
 \small
 
 \[
@@ -4377,7 +4187,7 @@ These distinctions are frequently tested in examinations and viva.
 
 \section{Viva and Examination Questions}
 
-\begin{frame}{Viva Questions: Work Study}
+\begin{frame}[shrink=18]{Viva Questions: Work Study}
 \small
 
 \begin{enumerate}
@@ -4396,7 +4206,7 @@ These distinctions are frequently tested in examinations and viva.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Viva Questions: Time Study}
+\begin{frame}[shrink=18]{Viva Questions: Time Study}
 \small
 
 \begin{enumerate}
@@ -4416,7 +4226,7 @@ These distinctions are frequently tested in examinations and viva.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Viva Questions: Work Sampling}
+\begin{frame}[shrink=18]{Viva Questions: Work Sampling}
 \small
 
 \begin{enumerate}
@@ -4434,7 +4244,7 @@ These distinctions are frequently tested in examinations and viva.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Viva Questions: SQC}
+\begin{frame}[shrink=18]{Viva Questions: SQC}
 \small
 
 \begin{enumerate}
@@ -4452,7 +4262,7 @@ These distinctions are frequently tested in examinations and viva.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Viva Questions: Control Charts}
+\begin{frame}[shrink=18]{Viva Questions: Control Charts}
 \small
 
 \begin{enumerate}
@@ -4471,7 +4281,7 @@ These distinctions are frequently tested in examinations and viva.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Viva Questions: Acceptance Sampling}
+\begin{frame}[shrink=18]{Viva Questions: Acceptance Sampling}
 \small
 
 \begin{enumerate}
@@ -4497,57 +4307,18 @@ These distinctions are frequently tested in examinations and viva.
 
 \begin{frame}{Numerical Problem 1: Normal and Standard Time}
 \small
-
-A job has an observed time of:
-
-\[
-OT=4.5\text{ min}.
-\]
-
-The worker rating is:
-
-\[
-R=110\%.
-\]
-
-The allowance is:
-
-\[
-A=20\%
-\]
-
-of normal time.
-
-Find:
-
-\begin{enumerate}
-    \item Normal time
-    \item Standard time
-\end{enumerate}
-
-\vspace{5pt}
-
-\textbf{Solution:}
-
-\[
-NT=4.5(1.10)=4.95
-\]
-
-\[
-ST=4.95(1.20)=5.94
-\]
-
-\[
-\boxed{
-ST=5.94\text{ min}
-}
-\]
-
+Given $OT=4.5\,\mathrm{min}$, $R=110\%$, and $A=20\%$ of normal time.
+\textbf{Find:} normal time and standard time.
+\begin{align*}
+NT&=4.5(1.10)=4.95\,\mathrm{min},\\
+ST&=4.95(1.20)=5.94\,\mathrm{min}.
+\end{align*}
+\begin{center}\boxed{ST=5.94\,\mathrm{min}}\end{center}
 \end{frame}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Numerical Problem 2: Work Sampling}
+\begin{frame}[shrink=18]{Numerical Problem 2: Work Sampling}
 \small
 
 During 800 random observations, a machine was found to be idle
@@ -4592,7 +4363,7 @@ CI\approx(0.1252,\ 0.1748)
 
 % ------------------------------------------------------------
 
-\begin{frame}{Numerical Problem 3: $\bar X$ Chart}
+\begin{frame}[shrink=18]{Numerical Problem 3: $\bar X$ Chart}
 \small
 
 Given:
@@ -4643,63 +4414,18 @@ LCL=49.7384
 
 \begin{frame}{Numerical Problem 4: $p$ Chart}
 \small
-
-Suppose:
-
-\[
-\bar p=0.04
-\]
-
-and:
-
-\[
-n=200.
-\]
-
-Then:
-
-\[
-\sigma_p=
-\sqrt{
-\frac{0.04(0.96)}{200}
-}
-\]
-
-\[
-\sigma_p\approx0.01386.
-\]
-
-Hence:
-
-\[
-UCL=0.04+3(0.01386)
-\]
-
-\[
-\boxed{
-UCL\approx0.0816
-}
-\]
-
-and:
-
-\[
-LCL=0.04-3(0.01386)<0.
-\]
-
-Therefore:
-
-\[
-\boxed{
-LCL=0
-}
-\]
-
+Suppose $\bar p=0.04$ and $n=200$.
+\begin{align*}
+\sigma_p&=\sqrt{\frac{0.04(0.96)}{200}}\approx0.01386,\\
+UCL&=0.04+3(0.01386)\approx0.0816,\\
+LCL&=0.04-3(0.01386)<0\;\Rightarrow\;LCL=0.
+\end{align*}
+\boxed{UCL\approx0.0816,\qquad LCL=0}
 \end{frame}
 
 % ------------------------------------------------------------
 
-\begin{frame}{Numerical Problem 5: $c$ Chart}
+\begin{frame}[shrink=18]{Numerical Problem 5: $c$ Chart}
 \small
 
 Suppose:
@@ -4750,7 +4476,7 @@ is the approximate three-sigma control region.
 
 \section{Physical and Engineering Interpretation}
 
-\begin{frame}{Physical Meaning of Standard Time}
+\begin{frame}[shrink=18]{Physical Meaning of Standard Time}
 \small
 
 Standard time is not simply the stopwatch reading.
@@ -4782,7 +4508,7 @@ Therefore standard time can support:
 
 % ------------------------------------------------------------
 
-\begin{frame}{Physical Meaning of Control Limits}
+\begin{frame}[shrink=18]{Physical Meaning of Control Limits}
 \small
 
 Control limits describe the expected statistical behavior of a
@@ -4821,7 +4547,7 @@ variation.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Physical Meaning of Process Capability}
+\begin{frame}[shrink=18]{Physical Meaning of Process Capability}
 \small
 
 A stable process can still produce excessive nonconforming units
@@ -4855,7 +4581,7 @@ Both questions are important.
 
 % ------------------------------------------------------------
 
-\begin{frame}{Why Statistical Thinking Matters}
+\begin{frame}[shrink=18]{Why Statistical Thinking Matters}
 \small
 
 Engineering decisions should distinguish:
@@ -4890,7 +4616,7 @@ not automatic conclusions.
 
 \section{Final Summary}
 
-\begin{frame}{Complete Unit--IV Concept Map}
+\begin{frame}[shrink=18]{Complete Unit--IV Concept Map}
 \small
 
 \[
@@ -4948,150 +4674,104 @@ Quality control:
 
 \begin{frame}{Unit--IV: Key Equations}
 \small
-
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
 \[
-\boxed{
-NT=OT\frac{R}{100}
-}
+\boxed{NT=OT\frac{R}{100}}
 \]
-
 \[
-\boxed{
-ST=NT(1+A)
-}
+\boxed{ST=NT(1+A)}
 \]
-
 \[
-\boxed{
-\hat p=\frac{x}{n}
-}
+\boxed{\hat p=\frac{x}{n}}
 \]
-
 \[
-\boxed{
-n=\frac{z^2pq}{e^2}
-}
+\boxed{n=\frac{z^2pq}{e^2}}
 \]
-
 \[
-\boxed{
-UCL_{\bar X}=\bar{\bar X}+A_2\bar R
-}
+\boxed{UCL_{\bar X}=\bar{\bar X}+A_2\bar R}
 \]
-
+\column{0.48\textwidth}
 \[
-\boxed{
-LCL_{\bar X}=\bar{\bar X}-A_2\bar R
-}
+\boxed{LCL_{\bar X}=\bar{\bar X}-A_2\bar R}
 \]
-
 \[
-\boxed{
-UCL_R=D_4\bar R
-}
+\boxed{UCL_R=D_4\bar R}
 \]
-
 \[
-\boxed{
-UCL_p=\bar p+
-3\sqrt{\frac{\bar p(1-\bar p)}{n}}
-}
+\boxed{UCL_p=\bar p+3\sqrt{\frac{\bar p(1-\bar p)}{n}}}
 \]
-
 \[
-\boxed{
-UCL_c=\bar c+3\sqrt{\bar c}
-}
+\boxed{UCL_c=\bar c+3\sqrt{\bar c}}
 \]
-
+\end{columns}
 \end{frame}
 
 % ------------------------------------------------------------
 
 \begin{frame}{Final Examination Checklist}
-\small
-
+\footnotesize
 Before an examination, be able to explain:
-
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
 \begin{itemize}
-    \item Work study and its objectives.
-    \item Method study and SREDIM.
-    \item ECRS.
-    \item OPC, flow process, two-handed and man-machine charts.
-    \item Work measurement.
-    \item Stopwatch time study.
-    \item Continuous and snapback timing.
-    \item Observed time.
-    \item Performance rating.
-    \item Normal time.
-    \item Allowances.
-    \item Standard time.
-    \item Work sampling.
-    \item Binomial model.
-    \item Confidence interval.
-    \item Sample-size calculation.
-    \item SQC.
-    \item Common and special causes.
-    \item Variables and attributes.
-    \item $\bar X$--$R$ charts.
-    \item $p$ and $c$ charts.
-    \item Acceptance sampling.
-    \item OC curve.
-    \item AQL, LTPD, $\alpha$ and $\beta$.
+\item Work study and objectives
+\item Method study and SREDIM
+\item ECRS
+\item OPC, flow process, two-handed and man-machine charts
+\item Work measurement
+\item Stopwatch time study
+\item Continuous and snapback timing
+\item Observed time
+\item Performance rating
+\item Normal time
+\item Allowances
+\item Standard time
 \end{itemize}
-
+\column{0.48\textwidth}
+\begin{itemize}
+\item Work sampling
+\item Binomial model
+\item Confidence interval
+\item Sample-size calculation
+\item SQC
+\item Common and special causes
+\item Variables and attributes
+\item $\bar X$--$R$ charts
+\item $p$ and $c$ charts
+\item Acceptance sampling
+\item OC curve
+\item AQL, LTPD, $\alpha$ and $\beta$
+\end{itemize}
+\end{columns}
 \end{frame}
 
 % ------------------------------------------------------------
 
 \begin{frame}{Final Conceptual Summary}
 \small
-
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
 \begin{center}
-
-\Large
-\textbf{Improve the Method}\\[4pt]
-
-\[
-\downarrow
-\]
-
-\textbf{Measure the Work}\\[4pt]
-
-\[
-\downarrow
-\]
-
-\textbf{Establish Normal and Standard Time}\\[4pt]
-
-\[
-\downarrow
-\]
-
-\textbf{Monitor Process Variation}\\[4pt]
-
-\[
-\downarrow
-\]
-
-\textbf{Identify Statistical Signals}\\[4pt]
-
-\[
-\downarrow
-\]
-
-\textbf{Investigate and Improve the Process}
-
+\textbf{1. Improve the Method}\\[3pt]
+$\downarrow$\\[3pt]
+\textbf{2. Measure the Work}\\[3pt]
+$\downarrow$\\[3pt]
+\textbf{3. Establish Normal and Standard Time}
 \end{center}
-
-\vspace{5pt}
-
-\[
-\boxed{
-\text{Productivity improvement and quality control are continuous engineering activities}
-}
-\]
-
+\column{0.48\textwidth}
+\begin{center}
+\textbf{4. Monitor Process Variation}\\[3pt]
+$\downarrow$\\[3pt]
+\textbf{5. Identify Statistical Signals}\\[3pt]
+$\downarrow$\\[3pt]
+\textbf{6. Investigate and Improve the Process}
+\end{center}
+\end{columns}
+\vspace{6pt}
+\begin{center}
+\boxed{\text{Productivity improvement and quality control are continuous engineering activities}}
+\end{center}
 \end{frame}
 
 % ============================================================
