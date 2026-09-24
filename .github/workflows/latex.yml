@@ -14,15 +14,38 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Compile LaTeX
+      # Unit-IV
+      - name: Compile Unit-IV
         uses: xu-cheng/latex-action@v4
         with:
           root_file: main.tex
           compiler: pdflatex
           args: -interaction=nonstopmode -file-line-error
 
-      - name: Upload PDF
+      - name: Rename Unit-IV PDF
+        run: mv main.pdf Unit-IV-Presentation.pdf
+
+      # Unit-V
+      - name: Compile Unit-V
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: unit-v.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode -file-line-error
+
+      - name: Rename Unit-V PDF
+        run: mv unit-v.pdf Unit-V-Presentation.pdf
+
+      # Upload Unit-IV
+      - name: Upload Unit-IV PDF
         uses: actions/upload-artifact@v4
         with:
           name: Unit-IV-Presentation
-          path: main.pdf
+          path: Unit-IV-Presentation.pdf
+
+      # Upload Unit-V
+      - name: Upload Unit-V PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: Unit-V-Presentation
+          path: Unit-V-Presentation.pdf
