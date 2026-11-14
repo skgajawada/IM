@@ -36,6 +36,17 @@ jobs:
       - name: Rename Unit-V PDF
         run: mv unit-v.pdf Unit-V-Presentation.pdf
 
+      # Unit-V
+      - name: Compile CM
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: CM.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode -file-line-error
+
+      - name: Rename Unit-V PDF
+        run: mv unit-v.pdf Unit-V-Presentation.pdf
+
       # Upload Unit-IV
       - name: Upload Unit-IV PDF
         uses: actions/upload-artifact@v4
@@ -49,3 +60,9 @@ jobs:
         with:
           name: Unit-V-Presentation
           path: Unit-V-Presentation.pdf
+      # Upload CM
+      - name: Upload CM PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: CM-Presentation
+          path: CM-Presentation.pdf
